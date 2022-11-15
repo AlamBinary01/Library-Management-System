@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,500;1,400&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="index.css" Content-Type: text/css> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <style>
+        *{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+body{
+
+   background-image: url('1.jpg');
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.container{ 
+position: relative;
+margin-top: 200px;
+width: 900px;
+height: 710px;
+background: #ffffff;
+border-radius: 5px;
+}
+img{
+    width: 300px;
+    margin-top: -17%;
+    margin-left: 280px;
+    
+
+}
+.label{
+    padding: 30px 150px;
+    font-size:45px ;
+    margin:auto;
+    font-weight: bolder;
+    color: #130f40;
+    text-align: center;
+}
+.login_form{
+    padding: 20px 40px;
+
+}
+.login_form .font{
+    font-size: 18px;
+    color: #130f40;
+    margin: 5px 0;
+}
+.login_form input{
+    height: 40px;
+    width: 350px;
+    padding: 0 5px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 255, 0.2);
+    border-radius: 10px;
+
+}
+.main{
+    margin-left: 450px;
+    margin-top: -19%;
+}
+.login_form .font2{
+    margin-top: 30px;
+}
+.login_form button{
+    margin-top: 30px;
+    margin-right:34%;
+    height: 70px;
+    width: 300px;
+    float: right;
+    font-size: 30px;
+    color:white;
+    outline: none;
+    cursor:pointer;
+    font-weight: bold;
+    background:#1A237E;
+    border-radius: 3px;
+    border: 1px solid;
+    border-radius: 10px;
+    transition: .5s;
+}
+.login_form button:hover{
+    background-color: white;
+    color:blue;
+}
+.login_form #email_error,.login_form #password_error{
+    margin-top: 5px;
+    width: 345px;
+    font-size: 18px;
+    color: #C62828;
+    background:rbga(255,0,0,0.1);
+    text-align: center;
+    padding: 5px 8px;
+    border-radius: 3px;
+    border: 1px solid #EF9A9A;
+    display: none;
+}
+hr{
+    margin-top: 110px;
+    margin-left: 110px;
+    width: 75%;
+}
+
+p{
+    text-align: center;
+    justify-content: center;
+    width: 30px;
+    background: #fff;
+    margin: -14px auto 10px;
+
+}
+span{
+    text-align: center;
+    justify-content: center;
+    display: flex ;
+}
+ul{
+  display: flex;
+  margin-left: 270px;
+}
+ul li{
+  position: relative;
+  display: flex;
+  color: rgb(0, 0, 0);
+  font-size: 35px;
+  height: 60px;
+  width: 60px;
+  background: #ffffff;
+  line-height: 60px;
+  align-items: center;
+  margin: 0 15px;
+  cursor: pointer; 
+}
+ul li:hover{
+    background-color: none;
+    color: #0318f5;
+    transition: 1s;
+}
+span{
+    text-align: center;
+    justify-content: center;
+    display: flex ;
+    font-size: 20px;
+}
+span a{
+    text-decoration: none;
+  
+}
+
+span a:hover{
+    cursor: pointer;
+    color: #1A237E;
+}
+
+
+    </style>
+    <title>Sign UP Page</title>
+</head>
+<body>
+    <!-- <div id="email_error"> Please fill up your Email or phone</div> -->
+    <div class="container">
+        <img src="22-removebg-preview.png" alt="">
+        <h1 class="label">Registration Form</h1>
+        <form class="login_form" action="" method="" name="form" onsubmit="return validation()">
+           <!-- username -->
+            <div class="font">User ID</div>
+            <input type="text" name="username" id="user_name" placeholder="20F-0000"> 
+            <!-- email or phone number -->
+            <div class="font">Password</div>
+            <input type="text" name="password" id="pass_id" placeholder="Enter Your password here"> 
+            <div class="main">
+                <div class="font">Email</div>
+                <input type="Email" name="email" id="email_id" placeholder="example@gmail.com">
+                
+            </div>
+            <!-- password -->
+            
+            <!-- <div id="password_error"> Please fill up  password</div> -->
+            <button type="submit">Sign IN</button>
+        </form>
+        <hr>
+        <p>OR</p>
+        <span>If you have alreday an account please  &nbsp;<a href="sign_up.html">Sign Up</a></span>
+        <br>
+        <ul>
+            <li><i class="fab fa-facebook-f"></i></li>
+            <li><i class="fab fa-twitter"></i></li>
+            <li><i class="fab fa-instagram"></i></li>
+            <li><i class="fab fa-linkedin-in"></i></li>
+        </ul>
+      
+    </div>
+    
+</body>
+<!-- <script src="index.js" Content-Type: text/javascript
+></script> -->
+<script>
+    var email=document.getElementById('email_id');
+var pass=document.getElementById('pass_id');
+
+function validation(){
+    if(email.value.length<10){
+        let x=document.innerHTML='The length of email is too short';
+        window.alert(x);
+    }
+}
+</script>
+</html>

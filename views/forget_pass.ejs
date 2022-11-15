@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,500;1,400&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="index.css" Content-Type: text/css> -->
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+}
+body{
+
+   background-image: url('1.jpg');
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.container{ 
+position: relative;
+margin-top: 100px;
+width: 450px;
+height: auto;
+background: #ffffff;
+border-radius: 5px;
+}
+img{
+    width: 200px;
+    margin-top: -20%;
+    margin-left: 120px;
+
+}
+.label{
+    padding: 30px 150px;
+    font-size:35px ;
+    margin:auto;
+    font-weight: bold;
+    color: #130f40;
+}
+.login_form{
+    padding: 20px 40px;
+
+}
+.login_form .font{
+    font-size: 18px;
+    color: #130f40;
+    margin: 5px 0;
+}
+.login_form input{
+    height: 40px;
+    width: 350px;
+    padding: 0 5px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 255, 0.2);
+    border-radius: 10px;
+
+}
+.login_form .font2{
+    margin-top: 30px;
+}
+.login_form button{
+  margin-top: 15px;
+  margin-right: 31%;
+    height: 50px;
+    width: 140px;
+    float: right;
+    font-size: 20px;
+    color:white;
+    outline: none;
+    cursor:pointer;
+    font-weight: bold;
+    background:#1A237E;
+    border-radius: 3px;
+    border: 1px solid;
+    border-radius: 10px;
+    transition: .5s;
+}
+.login_form button:hover{
+    background-color: white;
+    color:rgb(8, 12, 255);
+}
+.login_form #email_error,.login_form #password_error{
+    margin-top: 5px;
+    width: 345px;
+    font-size: 18px;
+    color: #C62828;
+    background:rbga(255,0,0,0.1);
+    text-align: center;
+    padding: 5px 8px;
+    border-radius: 3px;
+    border: 1px solid #EF9A9A;
+    display: none;
+}
+hr{
+    margin-top: 70px;
+    margin-left: 110px;
+    width: 50%;
+}
+p{
+    text-align: center;
+    justify-content: center;
+    width: 30px;
+    background: #fff;
+    margin: -14px auto 10px;
+
+}
+span{
+    text-align: center;
+    justify-content: center;
+    display: flex ;
+}
+span a{
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+span a:hover{
+    cursor: pointer;
+    color: #1A237E;
+}
+
+
+    </style>
+    <title>Sign In Page</title>
+</head>
+<body onload='document.login_form.text1.focus() ' >
+    <div class="container">
+        <h1 class="label">ForgotPass </h1>
+        <form class="login_form" action="/forgetpassword" method="post" name="form" ">
+            <div class="font">Username</div>
+            <!-- <div id="email_error"> Please fill up your Email or phone</div> -->
+            <input type="text" name="Username" id="email_id" placeholder="example@gmail.com"> 
+            <div class="font">Email</div>
+            <input type="emial" name="email" id="pass_id" placeholder="Enter your email here">
+
+          <!-- <div id="password_error"> Please fill up  password</div> -->
+            <button type="submit">Login</button>
+        </form>
+        <hr>
+        <p>OR</p>
+        
+        <br>
+    </div>
+</body>
+<!-- <script src="index.js" Content-Type: text/javascript
+></script> -->
+<script>
+   
+function validation(){
+    var email_=document.getElementById('email_id').value;
+    var password_ = document.getElementById('pass_id').value;
+    var status=false;
+    if(email_ == null || email_==""){
+        window.alert('Email can not be blank');
+        return false;
+    }
+    if(email_.length<10){
+       window.alert('Enter a valid email');
+        status=false;
+    }
+    else if(password_.length<6){
+
+        window.alert('Password must be at least 6 characters long');
+        return false;
+    }
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(email_.match(mailformat)){
+        
+        return ture;
+    }
+    else{
+        window.alert('Invalid email address');
+        return false;
+    }
+}
+</script>
+</html>

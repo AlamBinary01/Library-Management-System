@@ -2,7 +2,10 @@ const express = require("express");
 const path = require("path");
 const mysql = require("mysql");
 const body_parser = require("body-parser");
-const router= express.Router();
+const nodemailer = require("nodemailer");
+const { appendFile } = require("fs");
+const { encode } = require("querystring");
+const router = express.Router();
 
 //connection
 const connection = mysql.createConnection({
@@ -15,7 +18,6 @@ connection.connect(function (error) {
   if (error) console.log(error);
   else console.log(" Poyon Oil");
 });
-
 
 //add books
 router.get("/add", (req, res) => {
@@ -168,4 +170,160 @@ router.get("/Sorting/:sorting/:page", (req, res) => {
   });
 });
 
-module.exports=router;
+var transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  requireTLS: true,
+  auth: {
+    user: "hase271002@gmail.com",
+    pass: "eshfzdgfepgrxaio",
+  },
+});
+
+router.get("/forgetpassword", (req, res) => {
+  res.render("forget_pass");
+});
+router.post("/forgetpassword", (req, res) => {
+  let name = req.body.Username;
+  let email = req.body.email;
+
+  let query =
+    "Select * from userdata where username='" +
+    name +
+    "' and email='" +
+    email +
+    "';";
+  //console.log(query);
+  connection.query(query, function (error, result, fields) {
+    if (error) console.log(error);
+    else {
+      if (result.length > 0) {
+        var mailOption = {
+          from: "hase271002@gmail.com",
+          to: email,
+          subject: "Yours Verification Code is:",
+          html:
+            "Your Username is:" +
+            name +
+            " Your Code is:" +
+            result[0].password,
+        };
+        transporter.sendMail(mailOption, function (error, info) {
+          if (error) console.log(error);
+          else console.log("Email has been sent,",info.response);
+        });
+        res.redirect("/");
+      } else {
+        alert("Login Not Found");
+        res.redirect("registration");
+      }
+    }
+  });
+});
+
+///////////Verification////////////////////////
+function generateCode() {
+  var minm = 100000;
+  var maxm = 999999;
+  return Math.floor(Math.random() * (maxm - minm + 1)) + minm;
+}
+
+function verify(emial) {
+ let verificationcode = generateCode();
+  var mailOption = {
+    from: "alambinary01@gmail.com",
+    to: email,
+    subject: "Verification Code",
+    html:
+      "Hello Please Enter this Code to Verify Your Code:" + verificationcode,
+  };
+
+  transporter.sendMail(mailOption, function (error, info) {
+    if (error) {
+      throw error;
+    } else {
+      console.log("I am in verification");
+    }
+  });
+  return true;
+}
+
+router.get("/verify", (req, res) => {
+  res.redirect("verify");
+});
+
+router.post("/verify", (req, res) => {
+  let code = req.body.code;
+  if (code == verificationcode) {
+    console.log("code is correct");
+    res.redirect("/");
+  } else {
+    res.redirect("/verify");
+  }
+});
+////////////Registration///////////
+router.get("/registration", (req, res) => {
+  res.render("registration");
+});
+
+router.post("/registration", (req, res) => {
+  let username = req.body.username;
+  let email = req.body.email;
+  let password = req.body.password;
+
+  connection.query(
+    "INSERT INTO userdata(name,email,pass) VALUES(?,?,?)",
+    [username, email, password],
+    (error, result) => {
+      if (error) {
+        console.log("Error");
+        res.redirect("/welcome");
+      } else {
+        console.log("Data inserted");
+        verify(email);
+        res.redirect("/verify");
+      }
+    }
+  );
+});
+router.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
+//////////////////Admin Login?////////////////////
+router.get("adminMenu", (req, res) => {
+  res.render("add");
+});
+router.get("/adminlogin", (req, res) => {
+  res.render("login");
+});
+router.post("/adminlogin", (req, res) => {
+  login_name = req.body.Username;
+  login_pass = req.body.password;
+
+  // console.log(name);
+  // console.log(pass);
+
+  let sql =
+    "select * from userdata where username = '" +
+    login_name +
+    "' and password = '" +
+    login_pass +
+    "';";
+  connection.query(sql, function (error, result, fields) {
+    if (error) {
+      console.log(error);
+    } else {
+      if (result.length > 0) {
+        login_email = result.email;
+        res.redirect("/");
+      } else {
+        console.log("Login Not Found");
+        res.redirect("/registration");
+      }
+    }
+  });
+});
+
+module.exports = router;
