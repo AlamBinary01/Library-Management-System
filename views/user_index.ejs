@@ -123,16 +123,27 @@
        .topnav .dropdown div a:hover{
          background-color:#2196F3;
          }
+       
     </style>
   </head>
 
   <body>
-    <div class="search-container">
-      <form action="/add" method="post">
-        <input type="text" placeholder="Search.." name="sname" />
-        <button type="submit">Search</button>
-      </form>
+    <div class="topnav">
+      <div class="dropdown">
+        <button>Sorting</button>
+        <div>
+          <a href="/Sorting/ASC/<%=+CurrentPage%>">Ascending</a>
+          <a href="/Sorting/DESC/<%=+CurrentPage%>">Descending</a>
+        </div>
+      </div>
+      <div class="search-container">
+        <form action="/search" method="post">
+          <input type="text" placeholder="Search.." name="sname" />
+          <button type="submit">Search</button>
+        </form>
+      </div>
     </div>
+
     <div class="container">
       <h2><%= title %></h2>
       <a href="/add" class="btn btn-sm btn-primary">Add Books</a><br /><br />
