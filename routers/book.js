@@ -1,22 +1,19 @@
 const express = require("express");
 const path = require("path");
 const mysql = require("mysql");
-const body_parser = require("body-parser");
 const nodemailer = require("nodemailer");
-const { appendFile } = require("fs");
-const { encode } = require("querystring");
+const bookController=require("../controllers/booksControllers")
 const router = express.Router();
-
+router.route("/adminlogin").get(bookController.adminlogin_title);
+router.route("/adminlogin").post(bookController.admin_login);
 //connection
+
+
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "crud",
-});
-connection.connect(function (error) {
-  if (error) console.log(error);
-  else console.log(" Poyon Oil");
 });
 
 //add books
@@ -295,35 +292,6 @@ router.get("/", (req, res) => {
 router.get("adminMenu", (req, res) => {
   res.render("add");
 });
-router.get("/adminlogin", (req, res) => {
-  res.render("login");
-});
-router.post("/adminlogin", (req, res) => {
-  login_name = req.body.Username;
-  login_pass = req.body.password;
 
-  // console.log(name);
-  // console.log(pass);
-
-  let sql =
-    "select * from userdata where username = '" +
-    login_name +
-    "' and password = '" +
-    login_pass +
-    "';";
-  connection.query(sql, function (error, result, fields) {
-    if (error) {
-      console.log(error);
-    } else {
-      if (result.length > 0) {
-        login_email = result.email;
-        res.redirect("/");
-      } else {
-        console.log("Login Not Found");
-        res.redirect("/registration");
-      }
-    }
-  });
-});
 
 module.exports = router;
