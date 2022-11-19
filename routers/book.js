@@ -1,19 +1,10 @@
 const express = require("express");
 const connection=require("../config/config")
 const nodemailer = require("nodemailer");
-// const cookieParser = require("cookie-parser");
-// const session = require('express-session');
+
 const bookController = require("../controllers/booksControllers");
 const router = express.Router();
-// router.use(cookieParser());
-// router.use(
-//   session({
-//     secret:"bolarecord",
-//     resave:false,
-//     saveUninitialized:true,
-//     cookie:{path:"/",httpOnly:true,secure:false,maxAge:24*60*60*1000}
-//   })
-//);
+
 //admin logout
 router.get("/logout",(req,res)=>{
   req.session.admin=null;
@@ -23,7 +14,7 @@ router.get("/logout",(req,res)=>{
 //Routes
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
-router.route("/adminMenu").get(bookController.adminMenu);
+router.route("/adminmenu").get(bookController.adminMenu);
 //connection
 
 
