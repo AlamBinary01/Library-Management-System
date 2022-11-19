@@ -1,20 +1,32 @@
 const express = require("express");
-const path = require("path");
-const mysql = require("mysql");
+const connection=require("../config/config")
 const nodemailer = require("nodemailer");
-const bookController=require("../controllers/booksControllers")
+// const cookieParser = require("cookie-parser");
+// const session = require('express-session');
+const bookController = require("../controllers/booksControllers");
 const router = express.Router();
+// router.use(cookieParser());
+// router.use(
+//   session({
+//     secret:"bolarecord",
+//     resave:false,
+//     saveUninitialized:true,
+//     cookie:{path:"/",httpOnly:true,secure:false,maxAge:24*60*60*1000}
+//   })
+//);
+//admin logout
+router.get("/logout",(req,res)=>{
+  req.session.admin=null;
+  req.cookies.CurrentRole="";
+  res.sendFile(__dirname,+"/index.html")
+});
+//Routes
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
+router.route("/adminMenu").get(bookController.adminMenu);
 //connection
 
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "crud",
-});
 
 //add books
 router.get("/add", (req, res) => {
@@ -201,14 +213,11 @@ router.post("/forgetpassword", (req, res) => {
           to: email,
           subject: "Yours Verification Code is:",
           html:
-            "Your Username is:" +
-            name +
-            " Your Code is:" +
-            result[0].password,
+            "Your Username is:" + name + " Your Code is:" + result[0].password,
         };
         transporter.sendMail(mailOption, function (error, info) {
           if (error) console.log(error);
-          else console.log("Email has been sent,",info.response);
+          else console.log("Email has been sent,", info.response);
         });
         res.redirect("/");
       } else {
@@ -227,7 +236,7 @@ function generateCode() {
 }
 
 function verify(emial) {
- let verificationcode = generateCode();
+  let verificationcode = generateCode();
   var mailOption = {
     from: "alambinary01@gmail.com",
     to: email,
@@ -292,6 +301,5 @@ router.get("/", (req, res) => {
 router.get("adminMenu", (req, res) => {
   res.render("add");
 });
-
 
 module.exports = router;

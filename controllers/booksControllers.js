@@ -1,17 +1,18 @@
-const hello=require("../data/database")
-
+const mysql = require("mysql");
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "crud",
+});
 module.exports = {
   //Admin Login
-  adminlogin_title:(req,res)=>{
-    res.render("login")
+  adminlogin_title: (req, res) => {
+    res.render("login");
   },
   admin_login: (req, res) => {
     login_name = req.body.Username;
     login_pass = req.body.password;
-  
-    // console.log(name);
-    // console.log(pass);
-  
     let sql =
       "select * from userdata where username = '" +
       login_name +
@@ -24,7 +25,7 @@ module.exports = {
       } else {
         if (result.length > 0) {
           login_email = result.email;
-          res.redirect("/");
+          res.redirect("/adminmenu")
         } else {
           console.log("Login Not Found");
           res.redirect("/registration");
@@ -33,5 +34,9 @@ module.exports = {
     });
   },
 
-  
+  // admin Menu
+  adminMenu:(req,res)=>{
+    res.redirect("/adminmenu");
+
+  }
 };

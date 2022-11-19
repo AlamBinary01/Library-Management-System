@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const routes= require("./routers/book");
+const routes = require("./routers/book");
 const path = require("path");
 const body_parser = require("body-parser");
 const port = process.env.port | 3000;
 app.use(express.static("public"));
 // set view file
-app.set("views", path.join(__dirname, "views"));//
+app.set("views", path.join(__dirname, "views")); //
 
 // set view engine
 app.set("view engine", "ejs");
