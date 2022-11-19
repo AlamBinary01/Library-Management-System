@@ -1,9 +1,13 @@
 const express = require("express");
 const connection=require("../config/config")
 const nodemailer = require("nodemailer");
-
+// const cookieParser = require("cookie-parser");
+// const session = require('express-session');
 const bookController = require("../controllers/booksControllers");
 const router = express.Router();
+const Auth = require("../middleware/auth");
+//const Auth = require("C:\Users\alich\OneDrive\Documents\GitHub\Library-Management-System/middleware/auth.js");
+
 
 //admin logout
 router.get("/logout",(req,res)=>{
@@ -14,9 +18,10 @@ router.get("/logout",(req,res)=>{
 //Routes
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
-router.route("/adminmenu").get(bookController.adminMenu);
-router.route("/adminlogin/add").get(bookController.addBook_title);
-router.route("/adminlogin/add").post(bookController.insertBook);
+//router.route("/adminmenu",Auth).get(bookController.adminMenu);
+router.get("/adminmenu",Auth,  bookController.adminMenu);
+router.route("/adminlogin/add",Auth).get(bookController.addBook_title);
+router.route("/adminlogin/add",Auth).post(bookController.insertBook);
 //connection
 
 

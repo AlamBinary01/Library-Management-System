@@ -1,10 +1,12 @@
 const mysql = require("mysql");
+
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "crud",
 });
+
 module.exports = {
   //Admin Login
   adminlogin_title: (req, res) => {
@@ -25,6 +27,11 @@ module.exports = {
       } else {
         if (result.length > 0) {
           login_email = result.email;
+         const admin = { username: login_name, password: login_pass };
+         //const admin="123"
+                req.session.admin = admin;
+                console.log(req.session.admin);
+                res.cookie("CurrentRole", "Admin");
           console.log(result);
           res.redirect("/adminmenu")
         } else {
