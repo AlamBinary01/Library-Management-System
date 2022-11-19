@@ -39,5 +39,24 @@ module.exports = {
   adminMenu:(req,res)=>{
     res.render("adminmenu");
 
+  },
+  addBook_title:(req,res)=>{
+    res.render("book_add", {
+      title: "Add Books",
+    });
+  },
+  insertBook:(req,res)=>{
+    let data = {
+      book_id: req.body.book_id,
+      book_name: req.body.book_name,
+      author_name: req.body.author_name,
+      department: req.body.department,
+      rack_no: req.body.rack_no,
+    };
+    let sql = "INSERT INTO BOOK SET ?";
+   connection.query(sql, data, (err, results) => {
+      if (err) throw err;
+      res.redirect("/adminmenu");
+    });
   }
 };

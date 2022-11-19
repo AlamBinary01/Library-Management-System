@@ -15,6 +15,8 @@ router.get("/logout",(req,res)=>{
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
 router.route("/adminmenu").get(bookController.adminMenu);
+router.route("/adminlogin/add").get(bookController.addBook_title);
+router.route("/adminlogin/add").post(bookController.insertBook);
 //connection
 
 
