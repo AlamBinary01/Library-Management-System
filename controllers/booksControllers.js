@@ -26,7 +26,7 @@ module.exports = {
         if (result.length > 0) {
           login_email = result.email;
           console.log(result);
-          res.render("adminmenu")
+          res.redirect("/adminmenu")
         } else {
           console.log("Login Not Found");
           res.redirect("/registration");
@@ -37,7 +37,7 @@ module.exports = {
 
   // admin Menu
   adminMenu:(req,res)=>{
-    res.redirect("/adminmenu");
+    res.render("adminmenu");
 
   }
 };

@@ -1,818 +1,597 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <title>Library Managment system| Home</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .sidebar {
-            position: fixed;
-            height: 100%;
-            width: 240px;
-            background: #0A2558;
-            transition: all 0.5s ease;
-        }
-
-        .sidebar.active {
-            width: 60px;
-        }
-
-        .sidebar .logo-details {
-            height: 80px;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar .logo-details i {
-            font-size: 28px;
-            font-weight: 500;
-            color: #fff;
-            min-width: 60px;
-            text-align: center
-        }
-
-        .sidebar .logo-details .logo_name {
-            color: #fff;
-            font-size: 24px;
-            font-weight: 500;
-        }
-
-        .sidebar .nav-links {
-            margin-top: 10px;
-        }
-
-        .sidebar .nav-links li {
-            position: relative;
-            list-style: none;
-            height: 50px;
-        }
-
-        .sidebar .nav-links li a {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            transition: all 0.4s ease;
-        }
-
-        .sidebar .nav-links li a.active {
-            background: #081D45;
-        }
-
-        .sidebar .nav-links li a:hover {
-            background: #081D45;
-        }
-
-        .sidebar .nav-links li i {
-            min-width: 60px;
-            text-align: center;
-            font-size: 18px;
-            color: #fff;
-        }
-
-        .sidebar .nav-links li a .links_name {
-            color: #fff;
-            font-size: 15px;
-            font-weight: 400;
-            white-space: nowrap;
-        }
-
-        .sidebar .nav-links .log_out {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .home-section {
-            position: relative;
-            background: #f5f5f5;
-            min-height: 100vh;
-            width: calc(100% - 240px);
-            left: 240px;
-            transition: all 0.5s ease;
-        }
-
-        .sidebar.active~.home-section {
-            width: calc(100% - 60px);
-            left: 60px;
-        }
-
-        .home-section nav {
-            display: flex;
-            justify-content: space-between;
-            height: 80px;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            position: fixed;
-            width: calc(100% - 240px);
-            left: 240px;
-            z-index: 100;
-            padding: 0 20px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
-        }
-
-        .sidebar.active~.home-section nav {
-            left: 60px;
-            width: calc(100% - 60px);
-        }
-
-        .home-section nav .sidebar-button {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: 500;
-        }
-
-        nav .sidebar-button i {
-            font-size: 35px;
-            margin-right: 10px;
-        }
-
-        .home-section nav .search-box {
-            position: relative;
-            height: 50px;
-            max-width: 550px;
-            width: 100%;
-            margin: 0 20px;
-        }
-
-        nav .search-box input {
-            height: 100%;
-            width: 100%;
-            outline: none;
-            background: #F5F6FA;
-            border: 2px solid #EFEEF1;
-            border-radius: 6px;
-            font-size: 18px;
-            padding: 0 15px;
-        }
-
-        nav .search-box .bx-search {
-            position: absolute;
-            height: 40px;
-            width: 40px;
-            background: #2697FF;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-radius: 4px;
-            line-height: 40px;
-            text-align: center;
-            color: #fff;
-            font-size: 22px;
-            transition: all 0.4 ease;
-        }
-
-        .home-section nav .profile-details {
-            display: flex;
-            align-items: center;
-            background: #F5F6FA;
-            border: 2px solid #EFEEF1;
-            border-radius: 6px;
-            height: 50px;
-            min-width: 190px;
-            padding: 0 15px 0 2px;
-        }
-
-        nav .profile-details img {
-            height: 40px;
-            width: 40px;
-            border-radius: 6px;
-            object-fit: cover;
-        }
-
-        nav .profile-details .admin_name {
-            font-size: 15px;
-            font-weight: 500;
-            color: #333;
-            margin: 0 10px;
-            white-space: nowrap;
-        }
-
-        nav .profile-details i {
-            font-size: 25px;
-            color: #333;
-        }
-
-        .home-section .home-content {
-            position: relative;
-            padding-top: 104px;
-        }
-
-        .home-content .overview-boxes {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding: 0 20px;
-            margin-bottom: 26px;
-        }
-
-        .overview-boxes .box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: calc(100% / 4 - 15px);
-            background: #fff;
-            padding: 15px 14px;
-            border-radius: 12px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .overview-boxes .box-topic {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .home-content .box .number {
-            display: inline-block;
-            font-size: 35px;
-            margin-top: -6px;
-            font-weight: 500;
-        }
-
-        .home-content .box .indicator {
-            display: flex;
-            align-items: center;
-        }
-
-        .home-content .box .indicator i {
-            height: 20px;
-            width: 20px;
-            background: #8FDACB;
-            line-height: 20px;
-            text-align: center;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 20px;
-            margin-right: 5px;
-        }
-
-        .box .indicator i.down {
-            background: #e87d88;
-        }
-
-        .home-content .box .indicator .text {
-            font-size: 12px;
-        }
-
-        .home-content .box .cart {
-            display: inline-block;
-            font-size: 32px;
-            height: 50px;
-            width: 50px;
-            background: #cce5ff;
-            line-height: 50px;
-            text-align: center;
-            color: #66b0ff;
-            border-radius: 12px;
-            margin: -15px 0 0 6px;
-        }
-
-        .home-content .box .cart.two {
-            color: #2BD47D;
-            background: #C0F2D8;
-        }
-
-        .home-content .box .cart.three {
-            color: #ffc233;
-            background: #ffe8b3;
-        }
-
-        .home-content .box .cart.four {
-            color: #e05260;
-            background: #f7d4d7;
-        }
-
-        .home-content .total-order {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .home-content .sales-boxes {
-            display: flex;
-            justify-content: space-between;
-            /* padding: 0 20px; */
-        }
-
-        /* left box */
-        .home-content .sales-boxes .recent-sales {
-            width: 65%;
-            background: #fff;
-            padding: 20px 30px;
-            margin: 0 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .home-content .sales-boxes .sales-details {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .sales-boxes .box .title {
-            font-size: 24px;
-            font-weight: 500;
-            /* margin-bottom: 10px; */
-        }
-
-        .sales-boxes .sales-details li.topic {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .sales-boxes .sales-details li {
-            list-style: none;
-            margin: 8px 0;
-        }
-
-        .sales-boxes .sales-details li a {
-            font-size: 18px;
-            color: #333;
-            font-size: 400;
-            text-decoration: none;
-        }
-
-        .sales-boxes .box .button {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .sales-boxes .box .button a {
-            color: #fff;
-            background: #0A2558;
-            padding: 4px 12px;
-            font-size: 15px;
-            font-weight: 400;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .sales-boxes .box .button a:hover {
-            background: #0d3073;
-        }
-
-        /* Right box */
-        .home-content .sales-boxes .top-sales {
-            width: 35%;
-            background: #fff;
-            padding: 20px 30px;
-            margin: 0 20px 0 0;
-            border-radius: 12px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .sales-boxes .top-sales li {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 10px 0;
-        }
-
-        .sales-boxes .top-sales li a img {
-            height: 40px;
-            width: 40px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-right: 10px;
-            background: #333;
-        }
-
-        .sales-boxes .top-sales li a {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .sales-boxes .top-sales li .product,
-        .price {
-            font-size: 17px;
-            font-weight: 400;
-            color: #333;
-        }
-
-        /* Responsive Media Query */
-        @media (max-width: 1240px) {
-            .sidebar {
-                width: 60px;
-            }
-
-            .sidebar.active {
-                width: 220px;
-            }
-
-            .home-section {
-                width: calc(100% - 60px);
-                left: 60px;
-            }
-
-            .sidebar.active~.home-section {
-                left: 220px;
-                width: calc(100% - 220px);
-                overflow: hidden;
-            }
-
-            .home-section nav {
-                width: calc(100% - 60px);
-                left: 60px;
-            }
-
-            .sidebar.active~.home-section nav {
-                width: calc(100% - 220px);
-                left: 220px;
-            }
-        }
-
-        @media (max-width: 1150px) {
-            .home-content .sales-boxes {
-                flex-direction: column;
-            }
-
-            .home-content .sales-boxes .box {
-                width: 100%;
-                overflow-x: scroll;
-                margin-bottom: 30px;
-            }
-
-            .home-content .sales-boxes .top-sales {
-                margin: 0;
-            }
-        }
-
-        @media (max-width: 1000px) {
-            .overview-boxes .box {
-                width: calc(100% / 2 - 15px);
-                margin-bottom: 15px;
-            }
-        }
-
-        @media (max-width: 700px) {
-
-            nav .sidebar-button .dashboard,
-            nav .profile-details .admin_name,
-            nav .profile-details i {
-                display: none;
-            }
-
-            .home-section nav .profile-details {
-                height: 50px;
-                min-width: 40px;
-            }
-
-            .home-content .sales-boxes .sales-details {
-                width: 560px;
-            }
-        }
-
-        @media (max-width: 550px) {
-            .overview-boxes .box {
-                width: 100%;
-                margin-bottom: 15px;
-            }
-
-            .sidebar.active~.home-section nav .profile-details {
-                display: none;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .sidebar {
-                width: 0;
-            }
-
-            .sidebar.active {
-                width: 60px;
-            }
-
-            .home-section {
-                width: 100%;
-                left: 0;
-            }
-
-            .sidebar.active~.home-section {
-                left: 60px;
-                width: calc(100% - 60px);
-            }
-
-            .home-section nav {
-                width: 100%;
-                left: 0;
-            }
-
-            .sidebar.active~.home-section nav {
-                left: 60px;
-                width: calc(100% - 60px);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Dashboard </title>
+  <link rel="stylesheet" href="./css/style1.css">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- Latest compiled and minified CSS -->
+   <link
+   rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+   crossorigin="anonymous"
+ />
+
+ <!-- Optional theme -->
+ <link
+   rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+   integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+   crossorigin="anonymous"
+ />
+
+ <!-- Latest compiled and minified JavaScript -->
+ <script
+   src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+   integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+   crossorigin="anonymous"
+ ></script>
+ <style>
+    
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 50px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+.home-section nav .search-box{
+  position: relative;
+  height: 50px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 20px;
+}
+nav .search-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+}
+nav .search-box .bx-search{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background: #2697FF;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  transition: all 0.4 ease;
+}
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
+}
+nav .profile-details img{
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+.home-section .home-content{
+  position: relative;
+  padding-top: 104px;
+}
+.home-content .overview-boxes{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  margin-bottom: 26px;
+}
+.overview-boxes .box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 4 - 15px);
+  background: #fff;
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.overview-boxes .box-topic{
+  font-size: 20px;
+  font-weight: 500;
+}
+.home-content .box .number{
+  display: inline-block;
+  font-size: 35px;
+  margin-top: -6px;
+  font-weight: 500;
+}
+.home-content .box .indicator{
+  display: flex;
+  align-items: center;
+}
+.home-content .box .indicator i{
+  height: 20px;
+  width: 20px;
+  background: #8FDACB;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 5px;
+}
+.box .indicator i.down{
+  background: #e87d88;
+}
+.home-content .box .indicator .text{
+  font-size: 12px;
+}
+.home-content .box .cart{
+  display: inline-block;
+  font-size: 32px;
+  height: 50px;
+  width: 50px;
+  background: #cce5ff;
+  line-height: 50px;
+  text-align: center;
+  color: #66b0ff;
+  border-radius: 12px;
+  margin: -15px 0 0 6px;
+}
+.home-content .box .cart.two{
+   color: #2BD47D;
+   background: #C0F2D8;
+ }
+.home-content .box .cart.three{
+   color: #ffc233;
+   background: #ffe8b3;
+ }
+.home-content .box .cart.four{
+   color: #e05260;
+   background: #f7d4d7;
+ }
+.home-content .total-order{
+  font-size: 20px;
+  font-weight: 500;
+}
+.home-content .sales-boxes{
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+/* left box */
+.home-content .sales-boxes .recent-sales{
+  width: 65%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.home-content .sales-boxes .sales-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sales-boxes .box .title{
+  font-size: 24px;
+  font-weight: 500;
+  /* margin-bottom: 10px; */
+}
+.sales-boxes .sales-details li.topic{
+  font-size: 20px;
+  font-weight: 500;
+}
+.sales-boxes .sales-details li{
+  list-style: none;
+  margin: 8px 0;
+}
+.sales-boxes .sales-details li a{
+  font-size: 18px;
+  color: #333;
+  font-size: 400;
+  text-decoration: none;
+}
+.sales-boxes .box .button{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sales-boxes .box .button a{
+  color: #fff;
+  background: #0A2558;
+  padding: 4px 12px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.sales-boxes .box .button a:hover{
+  background:  #0d3073;
+}
+
+/* Right box */
+.home-content .sales-boxes .top-sales{
+  width: 35%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px 0 0;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.sales-boxes .top-sales li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.sales-boxes .top-sales li a img{
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 10px;
+  background: #333;
+}
+.sales-boxes .top-sales li a{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.sales-boxes .top-sales li .product,
+.price{
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+}
+/* Responsive Media Query */
+@media (max-width: 1240px) {
+  .sidebar{
+    width: 60px;
+  }
+  .sidebar.active{
+    width: 220px;
+  }
+  .home-section{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section{
+    left: 220px;
+    width: calc(100% - 220px);
+    overflow: hidden;
+  }
+  .home-section nav{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section nav{
+    width: calc(100% - 220px);
+    left: 220px;
+  }
+}
+@media (max-width: 1150px) {
+  .home-content .sales-boxes{
+    flex-direction: column;
+  }
+  .home-content .sales-boxes .box{
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 30px;
+  }
+  .home-content .sales-boxes .top-sales{
+    margin: 0;
+  }
+}
+@media (max-width: 1000px) {
+  .overview-boxes .box{
+    width: calc(100% / 2 - 15px);
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 700px) {
+  nav .sidebar-button .dashboard,
+  nav .profile-details .admin_name,
+  nav .profile-details i{
+    display: none;
+  }
+  .home-section nav .profile-details{
+    height: 50px;
+    min-width: 40px;
+  }
+  .home-content .sales-boxes .sales-details{
+    width: 560px;
+  }
+}
+@media (max-width: 550px) {
+  .overview-boxes .box{
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .sidebar.active ~ .home-section nav .profile-details{
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .sidebar{
+    width: 0;
+  }
+  .sidebar.active{
+    width: 60px;
+  }
+  .home-section{
+    width: 100%;
+    left: 0;
+  }
+  .sidebar.active ~ .home-section{
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+  .home-section nav{
+    width: 100%;
+    left: 0;
+  }
+  .sidebar.active ~ .home-section nav{
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+}
+
+ </style>
 </head>
 
 <body>
-    <div class="header">
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <img src="images/2.png" width="160px">
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="" class="fas fa-home"> Home</a></li>
-                        <li><a href="/adminlogin" class="fas fa-user"> Admin</a></li>
-                        <li><a href="" class="fas fa-user"> Student</a></li>
-
-
-
-
-                    </ul>
-                </nav>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <h2>Let's Build future with</h2>
-                    <h1> <span class="typing">Fast-NU Library</span></h1>
-                    <p>Hurry Up to join our community now!
-                    </p>
-                    <a href="" class="btn">Explore Now &#8594</a>
-                </div>
-                <div class="col-2">
-                    <img src="images/1.png">
-                </div>
-            </div>
-        </div>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class=''></i>
+      <span class="logo_name">NU Library</span>
     </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#" class="active">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-book-add'></i>
+          <span class="links_name">Add Books</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-arrow-to-right'></i>
+          <span class="links_name">Show All Books</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-book-add'></i>
+          <span class="links_name">Add Fine</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-arrow-to-right'></i>
+          <span class="links_name">Show All Fine Student</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='fas fa'></i>
+          <span class="links_name">Feedback</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx'></i>
+          <span class="links_name">Issue Book</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-heart'></i>
+          <span class="links_name">Favrorites</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog'></i>
+          <span class="links_name">Return Book</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog'></i>
+          <span class="links_name">issue Library Card</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="#">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log Out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+    </nav>
 
-    <!-------------- Categories -------------->
-
-    <div class="categories">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-3">
-                    <img src="images/3.png">
-                </div>
-                <div class="col-3">
-                    <img src="images/3.png">
-                </div>
-                <div class="col-3">
-                    <img src="images/3.png">
-                </div>
-            </div>
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Total Admins</div>
+            <div class="number">40,876</div>
+          </div>
         </div>
-    </div>
-
-    <!-------------- computer Science -------------->
-
-    <div class="small-container">
-        <h2 class="title">CS Department</h2>
-        <div class="row">
-            <div class="col-4">
-                <img src="images/7.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/7.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/7.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/7.jpg ">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Total Students</div>
+            <div class="number">38,876</div>
+          </div>
         </div>
-
-        <!-------------- Electrical Book -------------->
-
-        <h2 class="title">Electrical Department</h2>
-        <div class="row">
-            <div class="col-4">
-                <img src="images/5.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/5.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/5.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/5.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/5.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/5.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/5.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
-            <div class="col-4">
-                <img src="images/5.jpg">
-                <h4>Dummy Text<br>Dummy Text</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>Rs.500</p>
-            </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Total Books</div>
+            <div class="number">$12,876</div>
+          </div>
         </div>
-    </div>
-
-    <!-------------- Offer -------------->
-
-    <div class="offer">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-2">
-                    <img src="images/6.jpg" class="offer-img">
-                </div>
-                <div class="col-2">
-                    <p>Exclusively Available on this Library</p>
-                    <h1>Invitation to Computer Science</h1>
-                    <small>INVITATION TO COMPUTER SCIENCE, 6TH EDITION maintains its bestselling, algorithm-driven
-                        approach and includes expanded chapter exercises and practice problems, new material on topics
-                        such as multicore and parallel systems, cloud computing, wireless communications, embedded
-                        computing, agile software development, emerging programming languages (Go and F#), and new
-                        models of e-commerce, as well as boxes dedicated to current issues throughout. </small>
-                    <br>
-                    <a href="" class="btn">Buy Now &#8594;</a>
-                </div>
-            </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Total Issue Books</div>
+            <div class="number">11,086</div>
+          </div>
         </div>
-    </div>
-    <br><br><br><br><br><br>
-    <!-------------- footer -------------->
+      </div>
 
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer col-1">
-                    <h3>Download our App</h3>
-                    <p>Download App for Android and Ios</p>
-                    <div class="app-logo">
-                        <img src="images/play-store.png">
-                        <img src="images/app-store.png">
-                    </div>
-                </div>
-                <div class="footer col-2">
-                    <img src="images/5.jpg" width="200px">
-                    <p>Our Purpose is to Deliver Best Books in the Library.</p>
-                </div>
-                <div class="footer col-3">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupons</li>
-                        <li>Return Policy</li>
-                        <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer col-4">
-                    <h3>Follow Us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                        <li>Instagram</li>
-                        <li>YouTube</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright">Haseeb Mushtaq 20F-0316</p>
-        </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-    <script>
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-            if (sidebar.classList.contains("active")) {
-                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-            } else
-                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
+      <div class="sales-boxes">
 
-    </script>
+      </div>
+
+  </section>
+
+  <script src="./javascript/admin.js">
+  </script>
+
 </body>
 
 </html>
