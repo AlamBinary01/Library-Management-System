@@ -27,11 +27,11 @@ module.exports = {
       } else {
         if (result.length > 0) {
           login_email = result.email;
-          const admin = { username: login_name, password: login_pass };
-          //const admin="123"
-          req.session.admin = admin;
-          console.log(req.session.admin);
-          res.cookie("CurrentRole", "Admin");
+         const admin = { username: login_name, password: login_pass };
+         //const admin="123"
+                req.session.admin = admin;
+                console.log(req.session.admin);
+                res.cookie("CurrentRole", "Admin");
           console.log(result);
           res.redirect("/adminmenu");
         } else {
@@ -127,7 +127,14 @@ module.exports = {
       });
     });
   },
+  search_title: (req, res) => {
+    console.log("title searched");
+    res.render("search", {
+      title: "Libarary Management System",
+    });
+  },
   searchBook: (req, res) => {
+    console.log("search book");
     const username = req.body.sname;
     const dataCountQuery = `SELECT COUNT(*) FROM book where book_id = ${username}`;
     connection.query(dataCountQuery, function (err, result) {
@@ -142,14 +149,15 @@ module.exports = {
       const Query = `SELECT * FROM book where book_id = ${username}`;
       connection.query(Query, function (err, result) {
         if (err) throw err;
+        // res.send(result);
+        console.log(result);
         res.render("search", {
-            data: result,
-            pages: totalPages,
-            CurrentPage: pageNo,
-            lastPage: totalPages,
-            title: "Library Management System",
-          },
-        );
+          user: result,
+          pages: totalPages,
+          CurrentPage: pageNo,
+          lastPage: totalPages,
+          title: "Library Management System",
+        });
       });
     });
   },
