@@ -77,9 +77,12 @@
                       border: 1px solid #ccc;
             }}
     </style>
+    <title>Searching Books</title>
   </head>
 
   <body>
+    <form action="/adminmenu/search" method="post">
+
     <div class="topnav">
       <div class="search-container">
         <form action="/amdinmenu/search" method="post">
@@ -89,7 +92,7 @@
       </div>
     </div>
     <div class="container">
-      <h2><%= title %></h2>
+     
       <a href="/adminmenu/add" class="btn btn-sm btn-primary">Add Books</a><br /><br />
 
       <table class="table table-hover">
@@ -105,7 +108,7 @@
           </tr>
         </thead>
         <tbody>
-          <%user.forEach(function(user){%>
+          <%data.forEach(function(user){%>
           <tr>
             <td><%=user.book_id%></td>
             <td><%=user.book_name%></td>
@@ -162,7 +165,7 @@
         <% } %>
       </ul>
     </div>
-
+    </form>
     <footer class="container">20F-0316 Haseeb</footer>
     <script>
       function Delete() {

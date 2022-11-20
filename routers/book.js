@@ -31,18 +31,20 @@ router.get("/logout", (req, res) => {
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
 
-//router.route("/adminmenu").get(bookController.adminMenu);
+router.route("/adminmenu").get(bookController.adminMenu);
 router.route("/adminmenu/add").get(bookController.addBook_title);
 router.route("/adminmenu/add").post(bookController.insertBook);
+
 router.route("/adminmenu/edit/:bookId").get(bookController.editBook);
 router.route("/adminmenu/edit").post(bookController.updateBook);
+
 router.route("/adminmenu/delete/:bookId").get(bookController.delete);
-router.route("/adminmenu/crud").get(bookController.pagination);
-//  router.route("/adminmenu/search").get(bookController.search_title);
-// router.route("/adminmennu/search").post(bookController.searchBook);
+router.route("/adminmenu").get(bookController.pagination);
+ router.route("/adminmenu/search").get(bookController.search_title);
+router.route("/adminmennu/search").post(bookController.searchBook);
 router.route("/adminmenu/Sorting/:sorting/:page").get(bookController.filterBook);
-router.route("/adminmenu",Auth).get(bookController.adminMenu);
-//app.get("/adminmenuu",Auth,bookController.adminMenu);
+//router.route("/adminmenu",Auth).get(bookController.adminMenu);
+router.get("/adminmenu",Auth,  bookController.adminMenu);
 router.route("/adminlogin/add",Auth).get(bookController.addBook_title);
 router.route("/adminlogin/add",Auth).post(bookController.insertBook);
 //connection
@@ -199,7 +201,7 @@ router.get("/Sorting/:sorting/:page", (req, res) => {
     });
   });
 });
-//>>>>>>> e24be40a529a3c30f1cb14a5dfee869ee5ef8633
+>>>>>>> e24be40a529a3c30f1cb14a5dfee869ee5ef8633
 
 var transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
