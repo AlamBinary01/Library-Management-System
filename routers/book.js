@@ -25,8 +25,7 @@ router.route("/adminmenu/add").post(bookController.insertBook);
 router.route("/adminmenu/edit/:bookId").get(bookController.editBook);
 router.route("/adminmenu/edit").post(bookController.updateBook);
 router.route("/adminmenu/delete/:bookId").get(bookController.delete);
-
-
+router.route("/adminmenu/crud").get(bookController.pagination);
  router.route("/adminmenu/search").get((req,res)=>{res.render("search")});
 router.route("/adminmennu/search").post(bookController.searchBook);
 router.route("/adminmenu/Sorting/:sorting/:page").get(bookController.filterBook);
@@ -187,7 +186,7 @@ router.get("/Sorting/:sorting/:page", (req, res) => {
     });
   });
 });
->>>>>>> e24be40a529a3c30f1cb14a5dfee869ee5ef8633
+// >>>>>>> e24be40a529a3c30f1cb14a5dfee869ee5ef8633
 
 // >>>>>>> e24be40a529a3c30f1cb14a5dfee869ee5ef8633
 
