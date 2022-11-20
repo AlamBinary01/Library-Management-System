@@ -17,19 +17,19 @@ const Auth=require("../middleware/auth")
 //Routes
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
+// router.get("/adminmenu",Auth,bookController.adminMenu);
+router.route("/adminmenu").get(Auth,bookController.adminMenu);
 
-router.route("/adminmenu").get(bookController.adminMenu);
-
-router.route("/adminmenu/add").get(bookController.addBook_title);
-router.route("/adminmenu/add").post(bookController.insertBook);
-router.route("/adminmenu/edit/:bookId").get(bookController.editBook);
-router.route("/adminmenu/edit").post(bookController.updateBook);
-router.route("/adminmenu/delete/:bookId").get(bookController.delete);
-router.route("/adminmenu/crud").get(bookController.pagination);
+router.route("/adminmenu/add").get(Auth,bookController.addBook_title);
+router.route("/adminmenu/add").post(Auth,bookController.insertBook);
+router.route("/adminmenu/edit/:bookId").get(Auth,bookController.editBook);
+router.route("/adminmenu/edit").post(Auth,bookController.updateBook);
+router.route("/adminmenu/delete/:bookId").get(Auth,bookController.delete);
+router.route("/adminmenu/crud").get(Auth,bookController.pagination);
  router.route("/adminmenu/search").get((req,res)=>{res.render("search")});
-router.route("/adminmennu/search").post(bookController.searchBook);
-router.route("/adminmenu/Sorting/:sorting/:page").get(bookController.filterBook);
-// router.get("/adminmenu",Auth,  bookController.adminMenu);
+router.route("/adminmennu/search").post(Auth,bookController.searchBook);
+router.route("/adminmenu/Sorting/:sorting/:page").get(Auth,bookController.filterBook);
+
 // router.route("/adminlogin/add",Auth).get(bookController.addBook_title);
 // router.route("/adminlogin/add",Auth).post(bookController.insertBook);
 // router.route("adminmenu/allBook").get(bookController.AllData);
