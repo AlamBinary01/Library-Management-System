@@ -27,12 +27,12 @@ module.exports = {
       } else {
         if (result.length > 0) {
           login_email = result.email;
-         const admin = { username: login_name, password: login_pass };
-         //const admin="123"
-                req.session.admin = admin;
-                console.log(req.session.admin);
-                res.cookie("CurrentRole", "Admin");
-          console.log(result);
+        //  const admin = { username: login_name, password: login_pass };
+        //  //const admin="123"
+        //         req.session.admin = admin;
+        //         console.log(req.session.admin);
+        //         res.cookie("CurrentRole", "Admin");
+         // console.log(result);
           res.redirect("/adminmenu");
         } else {
           console.log("Login Not Found");
@@ -101,7 +101,7 @@ module.exports = {
     let sql = `DELETE FROM BOOK WHERE book_id =${book_id}`;
     let query = connection.query(sql, (err, results) => {
       if (err) throw err;
-      res.redirect("/");
+      res.redirect("/admimenu");
     });
   },
   pagination: (req, res) => {
