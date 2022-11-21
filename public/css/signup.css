@@ -15,9 +15,10 @@ body{
 .container{
   background: #fff;
   width: 410px;
-  margin-left: 430px;
+
   margin-top: 40px;
   padding: 30px;
+  margin-left: 680px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 .container form{

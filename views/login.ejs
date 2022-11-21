@@ -1,190 +1,196 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,500;1,400&display=swap"
+        rel="stylesheet">
     <!-- <link rel="stylesheet" href="index.css" Content-Type: text/css> -->
     <style>
-        *{
-    margin: 0;
-    padding: 0;
-}
-body{
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-   background-image: url('1.jpg');
-    background-size: cover;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    font-family: 'Noto Sans', sans-serif;
-}
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
-.container{ 
-position: relative;
-margin-top: 100px;
-width: 450px;
-height: auto;
-background: #ffffff;
-border-radius: 5px;
-}
-img{
-    width: 200px;
-    margin-top: -20%;
-    margin-left: 120px;
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-}
-.label{
-    padding: 30px 150px;
-    font-size:35px ;
-    margin:auto;
-    font-weight: bold;
-    color: #130f40;
-}
-.login_form{
-    padding: 20px 40px;
+        body {
+            height: 100vh;
+            width: 100%;
+            background: rgb(163, 159, 159);
+        }
 
-}
-.login_form .font{
-    font-size: 18px;
-    color: #130f40;
-    margin: 5px 0;
-}
-.login_form input{
-    height: 40px;
-    width: 350px;
-    padding: 0 5px;
-    font-size: 18px;
-    outline: none;
-    border: 1px solid rgba(0, 0, 255, 0.2);
-    border-radius: 10px;
+        .container {
+            background: #fff;
+            width: 410px;
+            margin-left: 680px;
+            margin-top: 40px;
+            padding: 30px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
 
-}
-.login_form .font2{
-    margin-top: 30px;
-}
-.login_form button{
-  margin-top: 15px;
-  margin-right: 31%;
-    height: 50px;
-    width: 140px;
-    float: right;
-    font-size: 20px;
-    color:white;
-    outline: none;
-    cursor:pointer;
-    font-weight: bold;
-    background:#1A237E;
-    border-radius: 3px;
-    border: 1px solid;
-    border-radius: 10px;
-    transition: .5s;
-}
-.login_form button:hover{
-    background-color: white;
-    color:rgb(8, 12, 255);
-}
-.login_form #email_error,.login_form #password_error{
-    margin-top: 5px;
-    width: 345px;
-    font-size: 18px;
-    color: #C62828;
-    background:rbga(255,0,0,0.1);
-    text-align: center;
-    padding: 5px 8px;
-    border-radius: 3px;
-    border: 1px solid #EF9A9A;
-    display: none;
-}
-hr{
-    margin-top: 70px;
-    margin-left: 110px;
-    width: 50%;
-}
-p{
-    text-align: center;
-    justify-content: center;
-    width: 30px;
-    background: #fff;
-    margin: -14px auto 10px;
+        .container form {
+            margin-top: -20px;
+        }
 
-}
-span{
-    text-align: center;
-    justify-content: center;
-    display: flex ;
-}
-span a{
-    text-decoration: none;
-    font-weight: bold;
-    
-}
-span a:hover{
-    cursor: pointer;
-    color: #1A237E;
-}
+        .container form .data {
+            height: 45px;
+            width: 100%;
+            margin: 40px 0;
+        }
 
-p{
-    text-align: justify;
-}
+        form .data label {
+            font-size: 18px;
+        }
 
+        form .data input {
+            height: 100%;
+            width: 100%;
+            padding-left: 10px;
+            font-size: 17px;
+            border: 1px solid silver;
+        }
+
+        form .data input:focus {
+            border-color: #3498db;
+            border-bottom-width: 2px;
+        }
+
+        form .forgot-pass {
+            margin-top: -8px;
+        }
+
+        form .forgot-pass a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        form .forgot-pass a:hover {
+            text-decoration: underline;
+        }
+
+        form .btn {
+            margin: 30px 0;
+            height: 45px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        form .btn .inner {
+            height: 100%;
+            width: 300%;
+            position: absolute;
+            left: -100%;
+            z-index: -1;
+            background: none;
+            transition: all 0.4s;
+        }
+
+        form .btn:hover .inner {
+            left: 0;
+        }
+
+        form .btn button {
+            height: 100%;
+            width: 100%;
+            background: rgb(8, 0, 95);
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        form .signup-link {
+            text-align: center;
+        }
+
+        form .signup-link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        form .signup-link a:hover {
+            text-decoration: underline;
+        }
     </style>
     <title>lOGIN</title>
 </head>
-<body onload="document.login_form.text1.focus()" >
-    <div class="container">
-        <img src="../public/images/8.png" alt="">
-        <h1 class="label">Login</h1>
-        <form class="login_form" action="/adminlogin" method="post" name="form">
-            <div class="font">Username</div>
-            <!-- <div id="email_error"> Please fill up your Email or phone</div> -->
-            <input type="text" name="Username" id="email_id" placeholder="example@gmail.com"> 
-            <div class="font">Passward</div>
-            <input type="password" name="password" id="pass_id" placeholder="Enter your password here">
-          <!-- <div id="password_error"> Please fill up  password</div> -->
-            <button type="submit">Login</button>
-           
-        </form>
-        <hr>
-        <p>OR</p>
-        <span><a href="/forgetpassword">Forget Password?</a></span>
-        <br>
+
+<div class="container">
+    <label for="show" class="" title="close"></label>
+    <div class="text">
+        Login Form
     </div>
+    <form action="/adminlogin" method="post" name="form">
+        <div class="data">
+            <label>Email or Phone</label>
+            <input type="text" name="Username" placeholder="20F-0000" required>
+        </div>
+        <div class="data">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="password" required>
+        </div>
+        <div class="forgot-pass">
+            <a href="/forgetpassword">Forgot Password?</a>
+        </div>
+        <div class="btn">
+            <div class="inner"></div>
+            <button type="submit">login</button>
+        </div>
+        <div class="signup-link">
+            Not a member? <a href="./registration">Signup now</a>
+        </div>
+    </form>
+</div>
+
 </body>
 <!-- <script src="index.js" Content-Type: text/javascript
 ></script> -->
 <script>
-   
-function validation(){
-    var email_=document.getElementById('email_id').value;
-    var password_ = document.getElementById('pass_id').value;
-    var status=false;
-    if(email_ == null || email_==""){
-        window.alert('Email can not be blank');
-        return false;
-    }
-    if(email_.length<10){
-       window.alert('Enter a valid email');
-        status=false;
-    }
-    else if(password_.length<6){
 
-        window.alert('Password must be at least 6 characters long');
-        return false;
+    function validation() {
+        var email_ = document.getElementById('email_id').value;
+        var password_ = document.getElementById('pass_id').value;
+        var status = false;
+        if (email_ == null || email_ == "") {
+            window.alert('Email can not be blank');
+            return false;
+        }
+        if (email_.length < 10) {
+            window.alert('Enter a valid email');
+            status = false;
+        }
+        else if (password_.length < 6) {
+
+            window.alert('Password must be at least 6 characters long');
+            return false;
+        }
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (email_.match(mailformat)) {
+
+            return ture;
+        }
+        else {
+            window.alert('Invalid email address');
+            return false;
+        }
     }
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(email_.match(mailformat)){
-        
-        return ture;
-    }
-    else{
-        window.alert('Invalid email address');
-        return false;
-    }
-}
 </script>
+
 </html>
