@@ -8,12 +8,7 @@ const bookController = require("../controllers/booksControllers");
 const router = express.Router();
 const Auth=require("../middleware/auth")
 
-// //admin logout
-// router.get("/logout", (req, res) => {
-//   req.session.admin = null;
-//   req.cookies.CurrentRole = "";
-//   res.sendFile(__dirname, +"/index.html");
-// });
+
 //Routes
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
@@ -35,6 +30,24 @@ router.route("/adminmenu/Sorting/:sorting/:page").get(Auth,bookController.filter
 // router.route("adminmenu/allBook").get(bookController.AllData);
 
 
+/////////////////////////////////////Students Routes///////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //add books
 router.get("/add", (req, res) => {
