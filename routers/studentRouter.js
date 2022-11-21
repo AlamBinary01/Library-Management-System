@@ -4,6 +4,7 @@ const connection = require("../config/config");
 const nodemailer = require("nodemailer");
 const studentController=require("../controllers/studentController");
 const multer=require("multer");
+const auth_student=require("../middleware/auth")
 const app=express();
 const { application } = require("express");
 

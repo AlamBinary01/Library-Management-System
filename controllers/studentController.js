@@ -35,7 +35,11 @@ module.exports={
             
             else{
             if(result.length>0){
-               // login_email=result[0].email
+              const admin = { username: login_name, password: login_pass };
+              //const admin="123"
+                     req.session.admin = admin;
+                     console.log(req.session.admin);
+                     res.cookie("CurrentRole", "Student");
                res.sendFile(path.join(__dirname, '..', 'student', 'student_dashboard.html'))
 
             }

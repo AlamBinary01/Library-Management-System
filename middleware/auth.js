@@ -6,5 +6,14 @@ const auth = (req, res, next) => {
     
     next();
 };
+const auth_student = (req, res, next) => {
+    if (!req.session.admin) {
+      
+        return res.redirect("/studentlogin");
+    }
+    
+    next();
+};
 
 module.exports=auth;
+module.exports=auth_student;
