@@ -1,3 +1,4 @@
+let username;
 let verificationcode=generateCode();
 const nodemailer= require('nodemailer');
 var  transporter= nodemailer.createTransport({
@@ -109,8 +110,90 @@ verifycode:(req,res)=>{
   else{
       res.redirect("/verifycode");
   }
-}
+},
 
+forgetpassword:(req,res)=>{
+  res.sendFile(path.join(__dirname, '..', 'student', 'forgetpassword.html'))
+},
+
+forgetverificationcode:(req,res)=>{
+  res.sendFile(path.join(__dirname, '..', 'student', 'forgetverificationcode.html'))
+},
+
+forgetverificationdata:(req,res)=>{
+  let code =req.body.code;
+  if(code==verificationcode){
+  console.log("code is correct");
+  res.redirect("/updatepasswordstudent");
+  }
+  
+  else{
+      res.redirect("/forgetverificationcode");
+  }
+},
+
+forgetpassworddata:(req,res)=>{
+  let name=req.body.username;
+  let email=req.body.email;
+  username=name;
+  // console.log(name);
+  // console.log(pass);
+  
+  let query="select * from student where username = '"+name+"' and email = '"+email+"';"
+  console.log(query);
+      con.query(query,function(error,result,fields){
+          if(error){
+  console.log("Error");
+          }
+          
+          else{
+          if(result.length>0){
+verificationcode=generateCode();
+              var mailOption={
+                  from:"alishafa0376@gmail.com",
+                  to:email,
+                  subject:"Verification Code",
+                  html:"Your Verification Password is:"+verificationcode
+              }
+              
+              transporter.sendMail(mailOption,function(error,info){
+                  if(error){ throw error;}
+                  else{ 
+                      console.log("I am in verification");
+              }
+              })
+
+  res.redirect("/forgetverificationcode");
+          }
+          else{
+              console.log("Login Not Found");
+              res.redirect("/studentsignup");
+          }
+  
+      }
+      })
+},
+
+
+updatepasswordfile:(req,res)=>{
+  res.sendFile(path.join(__dirname, '..', 'student', 'updatestudentpassword.html'))
+},
+
+updatepassworddata:(req,res)=>{
+  let pass=req.body.password;
+  let query="update student set password = '"+pass+"' where username = '"+username+"';";
+  console.log(query);
+  con.query(query,(error,result)=>{
+    if(error){
+        console.log("Error");
+       res.redirect("/welcome");
+    }
+    else{
+
+        console.log("Data Update");
+        res.redirect("/studentlogin");    }
+}) 
+}
 
 }
 
@@ -127,7 +210,7 @@ function verification(email){
   var mailOption={
       from:"alishafa0376@gmail.com",
       to:email,
-      subject:"Verification Code",
+      subject:'<h1> Verification Code </h1>',
       html:"Hello Please Enter this Code to Verify Your Code:"+verificationcode
   }
   

@@ -245,7 +245,8 @@ router.post("/forgetpassword", (req, res) => {
         });
         res.redirect("/");
       } else {
-        alert("Login Not Found");
+        //alert("Login Not Found");
+        console.log("Yahn nhi hona cahye");
         res.redirect("registration");
       }
     }

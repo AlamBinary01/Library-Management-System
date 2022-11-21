@@ -32,6 +32,12 @@ const upload=multer({
  router.route("/studentsignup").post(upload.single("imageFile"),studentController.signup_data);
  router.route("/verifycode").get(studentController.verificationcode);
 router.route("/verifycode").post(studentController.verifycode);
+router.route("/forgetpasswordstudent").get(studentController.forgetpassword);
+router.route("/forgetpasswordstudent").post(studentController.forgetpassworddata);
 
+router.route("/forgetverificationcode").get(studentController.forgetverificationcode);
+router.route("/forgetverificationcode").post(studentController.forgetverificationdata);
+router.route("/updatepasswordstudent").get(studentController.updatepasswordfile);
+router.route("/updatepasswordstudent").post(studentController.updatepassworddata);
 
 module.exports = router;
