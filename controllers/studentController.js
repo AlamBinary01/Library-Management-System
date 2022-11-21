@@ -1,4 +1,17 @@
+let verificationcode=generateCode();
+const nodemailer= require('nodemailer');
+var  transporter= nodemailer.createTransport({
+  host:'smtp.gmail.com',
+  port:587,
+  secure:false,
+  requireTLS:true,
+  auth:{
+      user:"alishafa0376@gmail.com",
+      pass:"ttugjrkymvtfygqp"
+  }
+});
 path = require('path');
+const { verify } = require('crypto');
 const mysql = require("mysql");
 const con = mysql.createConnection({
   host: "localhost",
@@ -67,7 +80,7 @@ let age=req.body.age;
 let qualification=req.body.qualification;
 let file_name=req.file.originalname;
 console.log(email);
-
+verification(email);
 //[username,email,password],
 con.query('INSERT INTO student(name,username,email,phonenumber,password,qualification,age,image) VALUES(?,?,?,?,?,?,?,?)',[name_,username,email,phone,password,qualification,age,file_name],(error,result)=>{
     if(error){
@@ -75,11 +88,56 @@ con.query('INSERT INTO student(name,username,email,phonenumber,password,qualific
        res.redirect("/welcome");
     }
     else{
+
         console.log("Data inserted");
-        res.redirect("/studentlogin");
+        res.sendFile(path.join(__dirname, '..', 'student', 'verify_code.html'));
     }
 }) 
+},
+
+verificationcode:(req,res)=>{
+  res.sendFile(path.join(__dirname, '..', 'student', 'verify_code.html'))
+},
+
+verifycode:(req,res)=>{
+  let code =req.body.code;
+  if(code==verificationcode){
+  console.log("code is correct");
+  res.redirect("/studentlogin");
+  }
+  
+  else{
+      res.redirect("/verifycode");
+  }
 }
 
 
 }
+
+function generateCode() {
+  var minm = 100000;
+  var maxm = 999999;
+  return Math.floor(Math.random() * (maxm - minm + 1)) + minm;
+}
+
+function verification(email){
+  //verificationcode=generateCode();
+  //verificationcode=generateCode();
+  //verificationcode=generateCode();
+  var mailOption={
+      from:"alishafa0376@gmail.com",
+      to:email,
+      subject:"Verification Code",
+      html:"Hello Please Enter this Code to Verify Your Code:"+verificationcode
+  }
+  
+  transporter.sendMail(mailOption,function(error,info){
+      if(error){ throw error;}
+      else{ 
+          console.log("I am in verification");
+  }
+})
+return true;
+
+}
+
