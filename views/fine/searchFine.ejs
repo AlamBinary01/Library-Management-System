@@ -82,7 +82,7 @@
   <body>
     <div class="topnav">
       <div class="search-container">
-        <form action="/amdinmenu/search" method="post">
+        <form action="/adminmenu/searchFine" method="post">
           <input type="text" placeholder="Search.." name="sname" />
           <button type="submit">Search</button>
         </form>
@@ -90,7 +90,7 @@
     </div>
     <div class="container">
       <h2><%= title %></h2>
-      <a href="/adminmenu/add" class="btn btn-sm btn-primary">Add Fine</a><br /><br />
+      <a href="/adminmenu/addFine" class="btn btn-sm btn-primary">Add Fine</a><br /><br />
 
       <table class="table table-hover">
         <thead>
@@ -110,9 +110,9 @@
             <td><%=user.fine_type%></td>
             <td><%=user.amount%></td>
             <td>
-              <a href="edit/<%=user.std_id%>" class="btn btn-sm btn-primary">Edit</a>
+              <a href="editFine/<%=user.std_id%>" class="btn btn-sm btn-primary">Edit</a>
               &nbsp;
-              <a href="delete/<%=user.std_id%>"
+              <a href="deleteFine/<%=user.std_id%>"
                 class="btn btn-sm btn-danger"
                 onclick="return Delete()">Delete</a>
             </td>
@@ -131,15 +131,15 @@
         </li>
         <% } else {%>
         <li class="page-item">
-          <a class="page-link" href="search/?page=<%=CurrentPage-1%>">Previous</a>
+          <a class="page-link" href="searchFine/?page=<%=CurrentPage-1%>">Previous</a>
         </li>
         <% } %> <% for(let i=1; i<=pages; i++){ %> <% if(i==CurrentPage){ %>
         <li class="page-item active">
-          <a class="page-link" href="search/?page=<%=i%>"> <%=i%> </a>
+          <a class="page-link" href="searchFine/?page=<%=i%>"> <%=i%> </a>
         </li>
         <% } else {%>
         <li class="page-item">
-          <a class="page-link" href="search/?page=<%=i%>"> <%=i%> </a>
+          <a class="page-link" href="searchFine/?page=<%=i%>"> <%=i%> </a>
         </li>
         <% } %> <% } %> <% if(CurrentPage==lastPage) {%>
         <li class="page-item disabled">
@@ -147,7 +147,7 @@
         </li>
         <% } else {%>
         <li class="page-item">
-          <a class="page-link" href="search/?page=<%=+CurrentPage+1%>">Next</a>
+          <a class="page-link" href="searchFine/?page=<%=+CurrentPage+1%>">Next</a>
         </li>
         <% } %>
       </ul>

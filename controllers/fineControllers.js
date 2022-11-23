@@ -60,7 +60,7 @@ module.exports = {
       res.redirect("/adminmenu");
     });
   },
-  delete: (req, res) => {
+  deleteFine: (req, res) => {
     const stu_id = req.params.stu_id;
     let sql = `DELETE FROM BOOK WHERE book_id =${stu_id}`;
     let query = connection.query(sql, (err, results) => {
@@ -68,7 +68,7 @@ module.exports = {
       res.redirect("/");
     });
   },
-  pagination: (req, res) => {
+  listFine: (req, res) => {
     const dataCountQuery = "SELECT COUNT(*) FROM fine";
     connection.query(dataCountQuery, function (err, result) {
       if (err) throw err;
@@ -127,7 +127,7 @@ module.exports = {
   },
 
 
-  filterFine: (req, res) => {
+  filterOnFine: (req, res) => {
     const dataCountQuery = "SELECT COUNT(*) FROM fine";
     connection.query(dataCountQuery, function (err, result) {
       if (err) throw err;

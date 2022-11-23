@@ -136,8 +136,8 @@
         </div>
       </div>
       <div class="search-container">
-        <form action="/search" method="post">
-          <input type="text" placeholder="Search.." name="sname" />
+        <form action="/searchFine" method="post">
+          <input type="text" placeholder="Search" name="sname" />
           <button type="submit">Search</button>
         </form>
       </div>
@@ -145,7 +145,7 @@
 
     <div class="container">
       <h2><%= title %></h2>
-      <a href="/add" class="btn btn-sm btn-primary">Add Fine</a><br /><br />
+      <a href="/addFine" class="btn btn-sm btn-primary">Add Fine</a><br /><br />
 
       <table class="table table-hover">
         <thead>
@@ -165,10 +165,10 @@
             <td><%= user.fine_type%></td>
             <td><%= user.amount%></td>
             <td>
-              <a href="edit/<%=user.book_id%>" class="btn btn-sm btn-primary">Edit</a>
+              <a href="editFine/<%=user.book_id%>" class="btn btn-sm btn-primary">Edit</a>
               &nbsp;
               <a
-                href="delete/<%=user.book_id%>"
+                href="deleteFine/<%=user.book_id%>"
                 class="btn btn-sm btn-danger"
                 onclick="return Delete()" >Delete</a>
             </td>
