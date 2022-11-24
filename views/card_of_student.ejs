@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table data</title>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+        h1 {
+            text-align: center;
+        }
+        .flexbox {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .image {
+            height: 55%;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            height: 400px;
+            width: 250px;
+            margin: 20px;
+            background-color: cadetblue;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+        .user_details {
+            padding: 2px 16px;
+            height: 45%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1> Users Detail </h1>
+    <hr>
+
+    <div class="flexbox">
+        <% data.forEach(function(user_data){ %>
+            <div class="card">
+                <div class="image">
+                    <!-- <img src="../public/images/shahzaib.png" alt="nnnnnn"> -->
+                    <img src="/images/<%= user_data.image %>" alt="<%= user_data.image %>"
+                        style="height: 100%; width: 100%;">
+                </div>
+                <div class="user_details">
+                    <h4>
+                        <%= user_data.id %>
+                    </h4>
+                    <h4>
+                        <%= user_data.name %>
+                    </h4>
+                    <h4>
+                        <%= user_data.gender %>
+                    </h4>
+                </div>
+            </div>
+            <% }); %>
+    </div>
+</body>
+
+</html>

@@ -35,6 +35,16 @@ app.use(body_parser.urlencoded({ extended: false }));
 app.use(routes);
 app.use(student_routes);
 
+
+//Diaplay card on page
+// app.get("/adminmenu",(req,res)=>{
+//   con.query("select * from userdata",(error,user_data)=>{
+//     if(error) throw error;
+//     else res.render("card_of_student",{data:user_data})
+    
+//   })
+// })
+
 //server Listening
 app.listen(port, () => {
   console.log("Server Listening on http://localhost:3000");

@@ -128,76 +128,31 @@
         form .signup-link a:hover {
             text-decoration: underline;
         }
-
-        .container .text {
-            font-weight: bolder;
-            font-family: 'Montserrat', sans-serif;
-            
-        }
     </style>
-    <title>Sign Up</title>
+    <title>Update Password</title>
 </head>
 
 <div class="container">
     <label for="show" class="" title="close"></label>
     <div class="text">
-        Sign Up Form
+        Update Password
     </div>
-    <form action="" method="post" name="form">
-        <div class="data">
-            <label>Email</label>
-            <input type="text" name="email" placeholder="example" required>
-        </div>
-        <div class="data">
-            <label>Username</label>
-            <input type="text" name="Username" placeholder="20F-0000" required>
-        </div>
+    <form action="/" method="post" name="form">
         <div class="data">
             <label>Password</label>
             <input type="password" name="password" placeholder="password" required>
         </div>
+        <div class="data">
+            <label>Confirm Password</label>
+            <input type="password" name="con_password" placeholder="password" required>
+        </div>
         <div class="btn">
             <div class="inner"></div>
-            <button type="submit">Sign up</button>
-        </div>
-        <div class="signup-link">
-            Already have an Account? <a href="./adminlogin">Login</a>
+            <button type="submit">Update Password</button>
         </div>
     </form>
 </div>
 
 </body>
-<!-- <script src="index.js" Content-Type: text/javascript
-></script> -->
-<script>
-
-    function validation() {
-        var email_ = document.getElementById('email_id').value;
-        var password_ = document.getElementById('pass_id').value;
-        var status = false;
-        if (email_ == null || email_ == "") {
-            window.alert('Email can not be blank');
-            return false;
-        }
-        if (email_.length < 10) {
-            window.alert('Enter a valid email');
-            status = false;
-        }
-        else if (password_.length < 6) {
-
-            window.alert('Password must be at least 6 characters long');
-            return false;
-        }
-        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (email_.match(mailformat)) {
-
-            return ture;
-        }
-        else {
-            window.alert('Invalid email address');
-            return false;
-        }
-    }
-</script>
 
 </html>
