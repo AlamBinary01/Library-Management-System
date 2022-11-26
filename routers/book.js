@@ -12,7 +12,9 @@ const Auth=require("../middleware/auth")
 //RoutesO
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
-// router.get("/adminmenu",Auth,bookController.adminMenu);
+// admin Sign Up
+router.route("/adminsignup").get(bookController.admin_signup);
+router.route("/adminsignup").post(bookController.admin_signupdata);
 router.route("/adminmenu").get(Auth,bookController.adminMenu);
 
 router.route("/adminmenu/add").get(Auth,bookController.addBook_title);
