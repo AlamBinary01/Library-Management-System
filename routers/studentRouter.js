@@ -25,7 +25,7 @@ const upload=multer({
     })
 
 
-
+ router.route("/studentdashboard").get(auth_student,studentController.dashboard);
  router.route("/studentlogin").get(studentController.student_login);
  router.route("/studentlogin").post(studentController.login_data);
  router.route("/studentsignup").get(studentController.student_signup);
@@ -39,5 +39,6 @@ router.route("/forgetverificationcode").get(studentController.forgetverification
 router.route("/forgetverificationcode").post(studentController.forgetverificationdata);
 router.route("/updatepasswordstudent").get(studentController.updatepasswordfile);
 router.route("/updatepasswordstudent").post(studentController.updatepassworddata);
+router.route("/viewbookstudent").get(studentController.viewbookfile);
 
 module.exports = router;
