@@ -24,8 +24,7 @@ const upload=multer({
     })
     })
 
-
-
+router.route("/studentDashboard").get(studentController.studentDashboard);
  router.route("/studentlogin").get(studentController.student_login);
  router.route("/studentlogin").post(studentController.login_data);
  router.route("/studentsignup").get(studentController.student_signup);
@@ -34,6 +33,7 @@ const upload=multer({
 router.route("/verifycode").post(studentController.verifycode);
 router.route("/forgetpasswordstudent").get(studentController.forgetpassword);
 router.route("/forgetpasswordstudent").post(studentController.forgetpassworddata);
+router.route("/viewbookstudent").get(auth_student,studentController.viewbookstudentfile);
 
 router.route("/forgetverificationcode").get(studentController.forgetverificationcode);
 router.route("/forgetverificationcode").post(studentController.forgetverificationdata);

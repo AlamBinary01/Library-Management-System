@@ -29,8 +29,46 @@ module.exports={
    
   },
 
+  studentDashboard:(req,res)=>{
+    res.sendFile(path.join(__dirname, '..', 'student', 'student_dashboard.html'))
+  },
   student_signup: (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'student', 'student_signup.html'))
+  },
+
+
+  viewbookstudentfile:(req,res)=>{
+    const dataCountQuery = "SELECT COUNT(*) FROM book";
+            con.query(dataCountQuery, function(err,result){
+                if(err) throw err;
+        
+                let dataCount = result[0]["COUNT(*)"];
+                let pageNo = req.query.page ? req.query.page : 1;
+                let dataPerPages = req.query.data ? req.query.data : 3;
+                let startLimit = (pageNo - 1) * dataPerPages;
+                let totalPages = Math.ceil(dataCount/dataPerPages);
+        
+                // console.log(dataCount, "\n", pageNo, "\n",dataPerPages, "\n",startLimit, "\n",totalPages, "\n");
+        
+                const Query = `SELECT * FROM book LIMIT ${startLimit}, ${dataPerPages}`;
+                con.query(Query, function(err,result){
+
+// if(!err){
+//     res.status(201.json)
+// }
+
+                    if(err) throw err;
+                    // res.send(result);
+                    res.render( "viewbookstudent", 
+                         {
+                            dataa: result,
+                            pages: totalPages,
+                            CurrentPage: pageNo,
+                            lastPage: totalPages
+                         }
+                    );
+                })
+            });
   },
 
   login_data: (req,res)=>{
