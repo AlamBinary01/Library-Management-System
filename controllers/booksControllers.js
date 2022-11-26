@@ -13,7 +13,12 @@ const connection = mysql.createConnection({
 module.exports = {
   //Admin Login
   adminlogin_title: (req, res) => {
-    res.render("login");
+    res.sendFile(path.join(__dirname, "..", "L_admin", "admin_login.html"));
+  },
+  admin_signup: (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "..", "L_admin", "admin_registration.html")
+    );
   },
   admin_login: (req, res) => {
     login_name = req.body.Username;
@@ -39,12 +44,14 @@ module.exports = {
           res.redirect("/adminmenu");
         } else {
           console.log("Login Not Found");
-          res.redirect("/registration");
+          res.sendFile(
+            path.join(__dirname, "..", "L_admin", "admin_registration.html")
+          );
         }
       }
     });
   },
-  admin_signup: (req, res) => {
+  admin_signupdata: (req, res) => {
     if (!req.file) console.log("File Not found");
     let username = req.body.Username;
     let email = req.body.email;
@@ -52,6 +59,23 @@ module.exports = {
 
     console.log(email);
     console.log(password);
+    a_varification(email);
+    //[username,email,password],
+    connection.query(
+      "INSERT INTO userdata(username,email,password) VALUES(?,?,?)",
+      [username, email, password],
+      (error, result) => {
+        if (error) {
+          console.log("Error");
+          res.render("/adminlogin");
+        } else {
+          console.log("Data inserted");
+          res.sendFile(
+            path.join(__dirname, "..", "L_admin", "admin_verifycode.html")
+          );
+        }
+      }
+    );
   },
   // admin Menu
   adminMenu: (req, res) => {
@@ -198,49 +222,126 @@ module.exports = {
       });
     });
   },
-  updatePasswordFile: (req, res) => {
-    res.render("updatePass");
+  admin_verification_code: (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "..", "L_admin", "admin_verifycode.html")
+    );
   },
-  updatePassword: (req, res) => {
-    let pass = req.body.password;
-    let query=  "update userdata set password='"+pass+"'where username='"+username+"';"
-    console.log(query);
-    connection.query(query,(error,result)=>{
-      if(error) {console.log(error); res.redirect("/public/index.html");}
-      else{console.log("Data Update");res.render("login");}
-      
-    })
+  admin_verificode: (req, res) => {
+    let code = req.body.code;
+    if (code == admin_verificationcode) {
+      console.log("Code is correct");
+      res.redirect("/adminlogin");
+    } else {
+      res.redirect("/adminverifycode");
+    }
   },
-  forgetPassword:(req,res)=>{
-    let name=req.body.username;
-    let email=req.body.email;
-    let query="select * from userdata where username='"+name+"' and email='"+email+"';"
+  admin_forgetpassword: (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "..", "L_admin", "admin_forgetpassword.html")
+    );
+  },
+  admin_forgetverificationcode: (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "..", "L_admin", "admin_verifycode.html")
+    );
+  },
+  admin_forgetverificationdata: (req, res) => {
+    let code = req.body.code;
+    if (code == admin_verificationcode) {
+      console.log("code is correct");
+      res.redirect("/adminupdatepassword");
+    } else {
+      res.redirect("/adminforgetverificationcode");
+    }
+  },
+  admin_forgetpassworddata: (req, res) => {
+    let name = req.body.Username;
+    let email = req.body.email;
+    username = name;
+    let query =
+      "select * from userdata where username='" +
+      name +
+      "' and email='" +
+      email +
+      "';";
 
     console.log(query);
-    connection.query(query,function(error,result,fildl){
-      
-    })
-  }
+    connection.query(query, function (error, result, fildl) {
+      if (error) console.log(error);
+      else {
+        if (result.length > 0) {
+          admin_verificationcode = admin_generateCode();
+          var mailOption = {
+            from: "hase271002@gmail.com",
+            to: email,
+            subject: "Your Verification Code",
+            html: "Your verification Code is :" + admin_verificationcode,
+          };
+          transporter.sendMail(mailOption, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("I am in Verification");
+            }
+          });
+          res.redirect("/adminforgetverificationcode");
+        } else {
+          console.log("Login not Found");
+          res.redirect("/adminsignup");
+        }
+      }
+    });
+  },
+  admin_updatePasswordfile: (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "..", "L_admin", "admin_updatepassword.html")
+    );
+  },
+  admin_updatepassworddata: (req, res) => {
+    let pass = req.body.password;
+    let query =
+      "update userdata set password='" +
+      pass +
+      "'where username='" +
+      username +
+      "';";
+    console.log(query);
+    connection.query(query, (error, result) => {
+      if (error) {
+        console.log(error);
+        res.redirect("/public/index.html");
+      } else {
+        console.log("Data Update");
+        res.render("login");
+      }
+    });
+  },
+
 };
 
-function generateCode() {
+let admin_verificationcode = admin_generateCode();
+function admin_generateCode() {
   var minm = 100000;
   var maxm = 999999;
   return Math.floor(Math.random() * (maxm - minm + 1)) + minm;
 }
 
-function verification(email) {
-  var mailOption = {
-    from: "hase271002@gmail.com",
-    to: email,
-    subject: `<h1>Verification Code</h1>`,
-    html:
-      "Hello<br> Please Enter Enter this code to verify your email:" +
-      verificationcode,
-  };
-  transporter.sendMail(mailOption, function (error, info) {
-    if (error) throw error;
-    else console.log("Account Verified");
-  });
-  return true;
+function a_varification(email){
+    var mailOption = {
+        from: "hase271002@gmail.com",
+        to: email,
+        subject: " Verification Code is:",
+        html:
+          "Hello Please Enter this Code to Verify Your Code:" + admin_verificationcode,
+      };
+    
+      transporter.sendMail(mailOption, function (error, info) {
+        if (error) {
+          throw error;
+        } else {
+          console.log("I am in verification");
+        }
+      });
+      return true;
 }
