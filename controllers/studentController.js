@@ -26,41 +26,6 @@ module.exports = {
     res.sendFile(path.join(__dirname, "..", "student", "student_login.html"));
   },
 
-  viewbookfile:(req,res)=>{
-    const dataCountQuery = "SELECT COUNT(*) FROM book";
-    con.query(dataCountQuery, function(err,result){
-        if(err) throw err;
-
-        let dataCount = result[0]["COUNT(*)"];
-        let pageNo = req.query.page ? req.query.page : 1;
-        let dataPerPages = req.query.data ? req.query.data : 3;
-        let startLimit = (pageNo - 1) * dataPerPages;
-        let totalPages = Math.ceil(dataCount/dataPerPages);
-
-        // console.log(dataCount, "\n", pageNo, "\n",dataPerPages, "\n",startLimit, "\n",totalPages, "\n");
-
-        const Query = `SELECT * FROM book LIMIT ${startLimit}, ${dataPerPages}`;
-        con.query(Query, function(err,result){
-
-// if(!err){
-//     res.status(201.json)
-// }
-
-            if(err) throw err;
-            // res.send(result);
-            res.render( "viewbooks", 
-                 {
-                    dataa: result,
-                    pages: totalPages,
-                    CurrentPage: pageNo,
-                    lastPage: totalPages
-                 }
-            );
-        })
-    });
-
-  },
-  
   student_signup: (req, res) => {
     res.sendFile(path.join(__dirname, "..", "student", "student_signup.html"));
   },
@@ -102,34 +67,38 @@ module.exports = {
     });
   },
 
-signup_data:(req,res)=>{
-  if(!req.file){
-    console.log("File Not Found");
-}
-//res.sendFile(__dirname+"/Registration.html");
-let name_=req.body.name_;
-let username=req.body.username;
-let email=req.body.email;
-let password=req.body.password;
-let phone=req.body.phone;
-let age=req.body.age;
-let qualification=req.body.qualification;
-let file_name=req.file.originalname;
-console.log(email);
-verification(email);
-//[username,email,password],
-con.query('INSERT INTO student(name,username,email,phonenumber,password,qualification,age,image) VALUES(?,?,?,?,?,?,?,?)',[name_,username,email,phone,password,qualification,age,file_name],(error,result)=>{
-    if(error){
-        console.log("Error");
-       res.redirect("/welcome");
+  signup_data: (req, res) => {
+    if (!req.file) {
+      console.log("File Not Found");
     }
-    else{
-
-        console.log("Data inserted");
-        res.sendFile(path.join(__dirname, '..', 'student', 'verify_code.html'));
-    }
-}) 
-},
+    //res.sendFile(__dirname+"/Registration.html");
+    let name_ = req.body.name_;
+    let username = req.body.username;
+    let email = req.body.email;
+    let password = req.body.password;
+    let phone = req.body.phone;
+    let age = req.body.age;
+    let qualification = req.body.qualification;
+    let file_name = req.file.originalname;
+    console.log(email);
+    verification(email);
+    //[username,email,password],
+    con.query(
+      "INSERT INTO student(name,username,email,phonenumber,password,qualification,age,image) VALUES(?,?,?,?,?,?,?,?)",
+      [name_, username, email, phone, password, qualification, age, file_name],
+      (error, result) => {
+        if (error) {
+          console.log("Error");
+          res.redirect("/welcome");
+        } else {
+          console.log("Data inserted");
+          res.sendFile(
+            path.join(__dirname, "..", "student", "verify_code.html")
+          );
+        }
+      }
+    );
+  },
 
   verificationcode: (req, res) => {
     res.sendFile(path.join(__dirname, "..", "student", "verify_code.html"));
