@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const routes = require("./routers/book");
 const student_routes=require("./routers/studentRouter");
+const fine_routers=require("./routers/fineRouter");
 const path = require("path");
 const body_parser = require("body-parser");
 const port = process.env.port | 3000;
