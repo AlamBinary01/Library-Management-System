@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const routes = require("./routers/book");
 const student_routes=require("./routers/studentRouter");
-const fine_routers=require("./routers/fineRouter");
+const fine_routes=require("./routers/fineRouter");
 const path = require("path");
 const body_parser = require("body-parser");
 const port = process.env.port | 3000;
@@ -35,6 +35,7 @@ app.use(body_parser.urlencoded({ extended: false }));
 
 app.use(routes);
 app.use(student_routes);
+app.use(fine_routes);
 
 
 //Diaplay card on page
