@@ -1,4 +1,5 @@
 let username;
+let global_login_name;
 let verificationcode=generateCode();
 const nodemailer= require('nodemailer');
 var  transporter= nodemailer.createTransport({
@@ -43,6 +44,7 @@ module.exports={
   studentbookrating:(req,res)=>{
     // console.log("i am in student book rating")
 const star=parseInt(req.body.star_input);
+const feedback=req.body.feedback;
 
 /////////////////Retrive data from Table/////////////////
 
@@ -101,9 +103,18 @@ if (err) throw err;
 console.log(new_query);
 })
 
+new_query="insert into book_feedback(book_id,username,feedback) values('"+req.query.book_id+"','"+global_login_name+"','"+feedback+"')";
+con.query(new_query,(err,res)=>{
+  if (err) throw err;
+  console.log(new_query);
+  })
+
 
 })
  /////////////////////UPDATE QUERY END //////////////////////////////////
+
+
+
 res.redirect('/bookrating?book_id='+req.query.book_id);
 
 
@@ -154,6 +165,7 @@ con.query(query,(err,result)=>{
 
   login_data: (req,res)=>{
     login_name=req.body.username;
+global_login_name=login_name;
      login_pass=req.body.password;
     
     // console.log(name);
