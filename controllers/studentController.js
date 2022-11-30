@@ -35,7 +35,88 @@ module.exports={
   student_signup: (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'student', 'student_signup.html'))
   },
+  
+  specifibook:(req,res)=>{
 
+  },
+
+  studentbookrating:(req,res)=>{
+    // console.log("i am in student book rating")
+const star=parseInt(req.body.star_input);
+
+/////////////////Retrive data from Table/////////////////
+
+let new_query="select * from book_rating where book_id ='"+req.query.book_id+"';"
+con.query(new_query,(err,result1)=>{
+if (err) throw err;
+console.log(new_query);
+
+
+// New query for update book rating table
+
+
+let updated_query;
+if(star==1){
+  updated_query="update book_rating  set star1='"+(parseInt(result1[0].star1)+1)+"' where book_id ='"+req.query.book_id+"'";
+  }
+  else if(star==2){
+    updated_query="update book_rating  set star2='"+(parseInt(result1[0].star2)+1)+"' where book_id ='"+req.query.book_id+"'";
+    }
+    else if(star==3){
+      updated_query="update book_rating  set star3='"+(parseInt(result1[0].star3)+1)+"' where book_id ='"+req.query.book_id+"'";
+      }
+      else if(star==4){
+        updated_query="update book_rating  set star4='"+(parseInt(result1[0].star4)+1)+"' where book_id ='"+req.query.book_id+"'";
+        }
+        else if(star==5){
+          updated_query="update book_rating  set star5='"+(parseInt(result1[0].star5)+1)+"' where book_id ='"+req.query.book_id+"'";
+          }
+console.log(updated_query);
+          con.query(updated_query,(err,res)=>{
+            if (err) throw err;
+            // console.log(new_query);
+            })
+
+
+
+
+
+}) //end of 1st query 
+
+//////////Query for get data and calculate rating
+
+let new_query1="select * from book_rating where book_id ='"+req.query.book_id+"'";
+con.query(new_query1,(err,res)=>{
+if (err) throw err;
+console.log(new_query1);
+let total_people=parseInt(res[0].star1)+parseInt(res[0].star2)+parseInt(res[0].star3)+parseInt(res[0].star4)+parseInt(res[0].star5);
+let total_star=(parseInt(res[0].star1)*1)+(parseInt(res[0].star2)*2)+(parseInt(res[0].star3)*3)+(parseInt(res[0].star4)*4)+(parseInt(res[0].star5)*5);
+let updated_star=total_star/total_people;
+
+//query to update stars in book table
+
+let new_query="update book  set  stars ='"+updated_star+"' where book_id ='"+req.query.book_id+"';"
+con.query(new_query,(err,res)=>{
+if (err) throw err;
+console.log(new_query);
+})
+
+
+})
+ /////////////////////UPDATE QUERY END //////////////////////////////////
+res.redirect('/bookrating?book_id='+req.query.book_id);
+
+
+
+  },
+
+  viewdetailfile:(req,res)=>{
+let query="select * from book where book_id ='"+req.query.book_id+"'";
+con.query(query,(err,result)=>{
+  if (err) throw err;
+  res.render("book_detail",{dataa:result});
+})
+  },
 
   viewbookstudentfile:(req,res)=>{
     const dataCountQuery = "SELECT COUNT(*) FROM book";
