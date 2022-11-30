@@ -20,8 +20,8 @@ module.exports = {
   },
   insertFine: (req, res) => {
     let data = {
-      stu_id: req.body.stu_id,
-      stu_name: req.body.stu_name,
+      std_id: req.body.std_id,
+      std_name: req.body.std_name,
       fine_type: req.body.fine_type,
       amount: req.body.amount,
     };
@@ -33,7 +33,7 @@ module.exports = {
   },
   editFine: (req, res) => {
     const stu_id = req.params.stu_Id;
-    let sql = `SELECT * FROM FINE WHERE book_id =${stu_id}`;
+    let sql = `SELECT * FROM FINE WHERE std_id =${stu_id}`;
     let query = connection.query(sql, (err, results) => {
       if (err) throw err;
       res.render("updateFine", {
@@ -43,26 +43,26 @@ module.exports = {
     });
   },
   updateFine: (req, res) => {
-    const stu_id = req.body.stu_id;
+    const std_id = req.body.std_id;
     let sql =
       "UPDATE FINE SET stu_id='" +
-      req.body.stu_id +
+      req.body.std_id +
       " ', stu_name='" +
       req.body.stu_name +
       " ',fine_type='" +
       req.body.fine_type +
       " ',amount='" +
       req.body.amount +
-      " ' where book_id= " +
-      stu_id;
+      " ' where std_id= " +
+      std_id;
     let query = connection.query(sql, (err, results) => {
       if (err) throw err;
       res.redirect("/adminmenu");
     });
   },
   deleteFine: (req, res) => {
-    const stu_id = req.params.stu_id;
-    let sql = `DELETE FROM BOOK WHERE book_id =${stu_id}`;
+    const stu_id = req.params.std_id;
+    let sql = `DELETE FROM FINE WHERE std_id =${stu_id}`;
     let query = connection.query(sql, (err, results) => {
       if (err) throw err;
       res.redirect("/");
@@ -99,8 +99,9 @@ module.exports = {
   },
   searchFine: (req, res) => {
     console.log("searching fine");
-    const username = req.body.sname;  //sname  //std_id
-    const dataCountQuery = `SELECT COUNT(*) FROM fine where stu_id = ${username}`; //sname  //std_id
+    // const username = req.body.sname;  //sname  //std_id
+    const std_id = req.body.std_id;
+    const dataCountQuery = `SELECT COUNT(*) FROM fine where stu_id = ${std_id}`; //sname  //std_id
     connection.query(dataCountQuery, function (err, result) {
       if (err) throw err;
 
