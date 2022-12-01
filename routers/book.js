@@ -50,6 +50,11 @@ router.route("/adminmenu/returnbook").get(bookController.returnBook);
 //router.route("/adminmenu/details").post(bookController.showTotalAdmin);
 //admon logout
 router.route("/adminmenu/logout").get(bookController.admin_logout);
+///Admin Post
+router.route("/adminpost").get(bookController.adminpostfile);
+router.route("/adminpost").post(bookController.adminpostdata);
+
+
 
 var transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
