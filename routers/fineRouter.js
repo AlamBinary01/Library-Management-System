@@ -4,7 +4,7 @@ const connection = require("../config/config");
 const nodemailer = require("nodemailer");
 const FineController = require("../controllers/fineControllers");
 const router = express.Router();
-const Auth=require("../middleware/auth")
+const Auth=require("../middleware/auth");
 
 
 router.route("/adminmenu").get(Auth,FineController.adminMenu);

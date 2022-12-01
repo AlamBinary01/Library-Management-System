@@ -34,6 +34,9 @@ router.route("/verifycode").post(studentController.verifycode);
 router.route("/forgetpasswordstudent").get(studentController.forgetpassword);
 router.route("/forgetpasswordstudent").post(studentController.forgetpassworddata);
 router.route("/viewbookstudent").get(auth_student,studentController.viewbookstudentfile);
+router.route("/bookrating").get(auth_student,studentController.viewdetailfile);
+router.route("/bookrating").post(auth_student,studentController.studentbookrating);
+// router.route("/specificbook").post(auth_student,studentController.viewdetailfile);
 
 router.route("/forgetverificationcode").get(studentController.forgetverificationcode);
 router.route("/forgetverificationcode").post(studentController.forgetverificationdata);

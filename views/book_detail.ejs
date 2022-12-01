@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Book Detail</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+  }
+  body{
+    background:white;
+  } 
+   .image {
+    margin: 50px;
+float: left;
+/* width:5%;
+height:20px; */
+   }
+
+   .flexbox{
+    margin: 50px;
+    /* float:right; */
+    width:25%;
+    height:280px;
+   }
+
+   .container{
+            width: 400px;
+            background: rgb(255, 253, 253);
+            padding: 20px 30px;
+            /* border: 1px solid#444; */
+            border-radius: 5px;
+            /* display: flex; */
+            /* align-items: center;
+            justify-content: center;
+            flex-direction: column; */
+            float: right;
+        }
+
+        .star label{
+            font-size: 40px;
+            color: #444;
+            padding: 10px;
+            float: right;
+        }
+
+        h1{
+            color: brown;
+        }
+
+.container .star input{
+display: none;
+}
+.rate-input{
+    margin: 10px;
+
+}
+
+    </style>
+</head>
+<body>
+    <% dataa.forEach(function(dataa){ %>
+    <div class="image" style="border-radius: 30px;">        
+        <img src="../images/<%= dataa.image %>" alt=" cs.jpg" style="height: 40%; width: 40%;">
+           
+    </div>
+    
+    
+    <form action="/bookrating?book_id=<%=dataa.book_id%>" onclick="rating()" method="post">
+        <div class="container">
+            <h1>Rate us</h1>
+            <div class="star">
+                <input type="radio" name="rate" id="rate-5">
+                <label for="rate-5" class="fas fa-star" id="r5"></label>
+                <input type="radio" name="rate" id="rate-4">
+                <label for="rate-4" class="fas fa-star" id="r4"></label>
+                <input type="radio" name="rate" id="rate-3">
+                <label for="rate-3" class="fas fa-star" id="r3"></label>
+                <input type="radio" name="rate" id="rate-2">
+                <label for="rate-2" class="fas fa-star" id="r2"></label>
+                <input type="radio" name="rate" id="rate-1">
+                <label for="rate-1" class="fas fa-star" id="r1"></label>
+            </div>
+    <input type="range" name="star_input" id="input-range" class="rate-input" min="0" max="5" value="<%=dataa.stars%>">
+            <textarea name="feedback" id="" cols="40" rows="5"></textarea>
+            <input type="submit" class="btn btn-secondary" value="Submit">
+    
+        </div>
+    </form>
+
+
+    <div class="flexbox">
+        <h4>
+            Book ID:<%= dataa.book_id %>
+        </h4>
+        <h4>
+          Book Name: <%= dataa.book_name %>
+        </h4>
+        <h4>
+           Author Name:<%= dataa.author_name %>
+        </h4>
+        <h4>
+            Department:<%= dataa.department %>
+        </h4>
+    </div>
+    <% }); %>
+    <script>
+
+// function rating (){
+    
+    let rate=document.getElementById("input-range").value;
+
+    document.getElementById("rate-5").style.color = "#fd4";
+    if(rate=="1"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#444";
+        document.getElementById("r3").style.color = "#444";
+        document.getElementById("r4").style.color = "#444";
+        document.getElementById("r5").style.color = "#444";
+
+    }
+    else if(rate=="2"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#fd4";
+        document.getElementById("r3").style.color = "#444";
+        document.getElementById("r4").style.color = "#444";
+        document.getElementById("r5").style.color = "#444";
+    }
+    else if(rate=="3"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#fd4";
+        document.getElementById("r3").style.color = "#fd4";
+        document.getElementById("r4").style.color = "#444";
+        document.getElementById("r5").style.color = "#444";
+    }
+
+    else if(rate=="4"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#fd4";
+        document.getElementById("r3").style.color = "#fd4";
+        document.getElementById("r4").style.color = "#fd4";
+        document.getElementById("r5").style.color = "#444";
+    }
+    else if(rate=="5"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#fd4";
+        document.getElementById("r3").style.color = "#fd4";
+        document.getElementById("r4").style.color = "#fd4";
+        document.getElementById("r5").style.color = "#fd4";
+
+    }
+    else if(rate=="0"){
+        document.getElementById("r1").style.color = "#444";
+        document.getElementById("r2").style.color = "#444";
+        document.getElementById("r3").style.color = "#444";
+        document.getElementById("r4").style.color = "#444";
+        document.getElementById("r5").style.color = "#444";
+
+    }
+
+// }
+
+function rating (){
+    
+    let rate=document.getElementById("input-range").value;
+
+    document.getElementById("rate-5").style.color = "#fd4";
+    if(rate=="1"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#444";
+        document.getElementById("r3").style.color = "#444";
+        document.getElementById("r4").style.color = "#444";
+        document.getElementById("r5").style.color = "#444";
+
+    }
+    else if(rate=="2"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#fd4";
+        document.getElementById("r3").style.color = "#444";
+        document.getElementById("r4").style.color = "#444";
+        document.getElementById("r5").style.color = "#444";
+    }
+    else if(rate=="3"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#fd4";
+        document.getElementById("r3").style.color = "#fd4";
+        document.getElementById("r4").style.color = "#444";
+        document.getElementById("r5").style.color = "#444";
+    }
+
+    else if(rate=="4"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#fd4";
+        document.getElementById("r3").style.color = "#fd4";
+        document.getElementById("r4").style.color = "#fd4";
+        document.getElementById("r5").style.color = "#444";
+    }
+    else if(rate=="5"){
+        document.getElementById("r1").style.color = "#fd4";
+        document.getElementById("r2").style.color = "#fd4";
+        document.getElementById("r3").style.color = "#fd4";
+        document.getElementById("r4").style.color = "#fd4";
+        document.getElementById("r5").style.color = "#fd4";
+
+    }
+    else if(rate=="0"){
+        document.getElementById("r1").style.color = "#444";
+        document.getElementById("r2").style.color = "#444";
+        document.getElementById("r3").style.color = "#444";
+        document.getElementById("r4").style.color = "#444";
+        document.getElementById("r5").style.color = "#444";
+
+    }
+
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>
+            <%= title %>
+        </h2>
+        <form action="/adminmenu/issueBook" method="post">
+            <div class="form-group">
+                <label for="std_id"></label>Student ID</label>
+                <input type="text" class="form-control" id="std_id" placeholder="Enter Student ID" name="std_id"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="std_email"></label>Student Email</label>
+                <input type="text" class="form-control" id="std_email" placeholder="Enter Student Email"
+                    name="std_email" required>
+            </div>
+            <div class="form-group">
+                <label for="book_id"></label>Book ID</label>
+                <input type="text" class="form-control" id="book_id" placeholder="Enter Book ID" name="book_id"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="book_name"></label>Book Name</label>
+                <input type="text" class="form-control" id="book_name" placeholder="Enter Book Name" name="book_name"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="issuedate"></label>Issue Date</label>
+                <input type="date" class="form-control" id="issuedate" placeholder="Enter Book Issue Date"
+                    name="issuedate" required>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary" onclick="return issued()">Submit</button>
+        </form>
+    </div>
+    <script>
+        function issued() {
+            alert("Book issued to student with respevtive ID");
+        }
+    </script>
+</body>
+
+</html>
