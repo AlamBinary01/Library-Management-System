@@ -98,10 +98,9 @@ module.exports = {
     });
   },
   searchFine: (req, res) => {
-    console.log("searching fine");
     // const username = req.body.sname;  //sname  //std_id
-    const std_id = req.body.std_id;
-    const dataCountQuery = `SELECT COUNT(*) FROM fine where stu_id = ${std_id}`; //sname  //std_id
+    const std_id = req.body.sname;
+    const dataCountQuery = `SELECT * FROM fine where std_id = ${std_id}`; //sname  //std_id
     connection.query(dataCountQuery, function (err, result) {
       if (err) throw err;
 
@@ -111,7 +110,7 @@ module.exports = {
       let startLimit = (pageNo - 1) * dataPerPages;
       let totalPages = Math.ceil(dataCount / dataPerPages);
 
-      const Query = `SELECT * FROM fine where stu_id = ${username}`;
+      const Query = `SELECT * FROM fine where std_id = ${std_id}`;
       connection.query(Query, function (err, result) {
         if (err) throw err;
         // res.send(result);

@@ -51,6 +51,10 @@ module.exports = {
       }
     });
   },
+  admin_logout: (req, res) => {
+    req.session.admin = null;
+    res.redirect("/");
+  },
   admin_signupdata: (req, res) => {
     if (!req.file) console.log("File Not found");
     let username = req.body.Username;
@@ -136,13 +140,13 @@ module.exports = {
     let sql = `DELETE FROM BOOK WHERE book_id =${book_id}`;
     let query = connection.query(sql, (err, results) => {
       if (err) throw err;
-      res.redirect("/");
+      res.redirect("/adminmenu");
     });
   },
   pagination: (req, res) => {
     const dataCountQuery = "SELECT COUNT(*) FROM book";
     connection.query(dataCountQuery, function (err, result) {
-      if (err) throw err;
+      if (err) console.log(err);
 
       let dataCount = result[0]["COUNT(*)"];
       let pageNo = req.query.page ? req.query.page : 1;
@@ -169,7 +173,6 @@ module.exports = {
     });
   },
   searchBook: (req, res) => {
-    console.log("search book");
     const username = req.body.sname;
     const dataCountQuery = `SELECT COUNT(*) FROM book where book_id = ${username}`;
     connection.query(dataCountQuery, function (err, result) {
@@ -317,7 +320,103 @@ module.exports = {
       }
     });
   },
+  showTotalAdmin: (req, res) => {
+    const query = `SELECT * FORM  userdata`;
+    connection.query(query, function (err, result) {
+      if (err) throw err;
+      res.render("adminmenu", {
+        user: result,
+      });
+    });
+  },
 
+  /// Issue Book GET function
+  issuebook: (req, res) => {
+    res.render("issue_book");
+  },
+  // Issue Book POST function
+  insertissuebook: (req, res) => {
+    let fullname = req.body.name_;
+    let username = req.body.u_id;
+    let email = req.body.email_;
+    let phonenumber = req.body.phone_;
+    let bookname = req.body.book_name;
+    let issuedate = req.body.Issue_date;
+    let duedate = req.body.due_date;
+    let department = req.body.department;
+
+    connection.query(
+      " INSERT INTO ISSUEBOOK ( fullname , username, email, phonenumber, bookname, issuedate, duedate, department )VALUES(?,?,?,?,?,?,?,?)",
+      [
+        fullname,
+        username,
+        email,
+        phonenumber,
+        bookname,
+        issuedate,
+        duedate,
+        department,
+      ],
+      (err, result) => {
+        if (err) console.log(err);
+        else {
+          var mailOption = {
+            from: "hase271002@gmail.com",
+            to: email,
+            subject: "Your Issued Book Detail",
+            html:
+              "<h1>Welcome to Alam Library </h1><br>Book Name:" +
+              bookname +
+              "<br> Issue Date" +
+              issuedate +
+              "<br>Due Date " +
+              duedate +
+              "Thanks",
+          };
+          transporter.sendMail(mailOption, function (error, info) {
+            if (error) console.log(error);
+            else console.log("Successfully Mail");
+          });
+        }
+        res.redirect("/adminmenu");
+      }
+    );
+  },
+  //rerun book function
+  returnBook: (req, res) => {
+    res.render("returnBook");
+  },
+  //issued book detail
+  issuebookdetail:(req,res)=>{
+    const query=`SELECT * FROM ISSUEBOOK `;
+    connection.query(query,function(err,result){
+      res.render("issuebookDetails",{
+        user:result,
+        title:"All Issued Booked"
+      })
+    })
+  },
+  searchissueddetails:(req,res)=>{
+    const username=req.body.sname;
+    const query=`SELECT count(*) FROM issuebook WHERE fullname = ${username}`;
+    connection.query(query,function(err,result){
+      if(err) throw err;
+      res.render("issuebookDetails",{
+        user:result,
+        title:"Issued Book Details"
+      })
+    })
+  },
+
+  showTotalAdmindetail:(req,res)=>{
+    const Query=`SELECT *FROM userdata`;
+    connection.query(Query,function(err,result){
+      res.render("adminMenu",{
+        user:result,
+        title:"Library"
+      })
+    })
+  }
 };
 
 let admin_verificationcode = admin_generateCode();
@@ -327,21 +426,22 @@ function admin_generateCode() {
   return Math.floor(Math.random() * (maxm - minm + 1)) + minm;
 }
 
-function a_varification(email){
-    var mailOption = {
-        from: "hase271002@gmail.com",
-        to: email,
-        subject: " Verification Code is:",
-        html:
-          "Hello Please Enter this Code to Verify Your Code:" + admin_verificationcode,
-      };
-    
-      transporter.sendMail(mailOption, function (error, info) {
-        if (error) {
-          throw error;
-        } else {
-          console.log("I am in verification");
-        }
-      });
-      return true;
+function a_varification(email) {
+  var mailOption = {
+    from: "hase271002@gmail.com",
+    to: email,
+    subject: " Verification Code is:",
+    html:
+      "Hello Please Enter this Code to Verify Your Code:" +
+      admin_verificationcode,
+  };
+
+  transporter.sendMail(mailOption, function (error, info) {
+    if (error) {
+      throw error;
+    } else {
+      console.log("I am in verification");
+    }
+  });
+  return true;
 }

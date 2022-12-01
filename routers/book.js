@@ -16,7 +16,6 @@ router.route("/adminlogin").post(bookController.admin_login);
 router.route("/adminsignup").get(bookController.admin_signup);
 router.route("/adminsignup").post(bookController.admin_signupdata);
 router.route("/adminmenu").get(Auth,bookController.adminMenu);
-
 router.route("/adminmenu/add").get(Auth,bookController.addBook_title);
 router.route("/adminmenu/add").post(Auth,bookController.insertBook);
 router.route("/adminmenu/edit/:bookId").get(Auth,bookController.editBook);
@@ -24,7 +23,7 @@ router.route("/adminmenu/edit").post(Auth,bookController.updateBook);
 router.route("/adminmenu/delete/:bookId").get(Auth,bookController.delete);
 router.route("/adminmenu/crud").get(Auth,bookController.pagination);
  router.route("/adminmenu/search").get((req,res)=>{res.render("search")});
-router.route("/adminmennu/search").post(Auth,bookController.searchBook);
+router.route("/adminmenu/search").post(Auth,bookController.searchBook);
 router.route("/adminmenu/Sorting/:sorting/:page").get(Auth,bookController.filterBook);
 router.route("/adminverifycode").get(bookController.admin_verification_code);
 router.route("/adminverifycode").post(bookController.admin_verificode);
@@ -38,8 +37,19 @@ router.route("/adminforgetverificationcode").post(bookController.admin_forgetver
 // admin update password
 router.route("/adminupdatepassword").get(bookController.admin_updatePasswordfile);
 router.route("/adminupdatepassword").post(bookController.admin_updatepassworddata);
-
-
+//Issue book router
+router.route("/adminmenu/issueBook").get(bookController.issuebook);
+router.route("/adminmenu/issueBook").post(bookController.insertissuebook);
+//Issued book Details
+router.route("/adminmenu/issuebookdetails").get(bookController.issuebookdetail);
+//search issued book details
+router.route("/adminmenu/issuedbookdetail").post(bookController.searchissueddetails);
+//Return Book router
+router.route("/adminmenu/returnbook").get(bookController.returnBook);
+//show total admin details
+//router.route("/adminmenu/details").post(bookController.showTotalAdmin);
+//admon logout
+router.route("/adminmenu/logout").get(bookController.admin_logout);
 
 var transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
