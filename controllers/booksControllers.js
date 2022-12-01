@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+let global_username;
 const nodemailer = require("nodemailer");
 const transporter = require("../nodeMailer/mail");
 const path = require("path");
@@ -22,6 +23,7 @@ module.exports = {
   },
   admin_login: (req, res) => {
     login_name = req.body.Username;
+    global_username=login_name;
     login_pass = req.body.password;
     let sql =
       "select * from userdata where username = '" +
@@ -97,13 +99,51 @@ module.exports = {
       author_name: req.body.author_name,
       department: req.body.department,
       rack_no: req.body.rack_no,
+      stars:0,
+      image:"cs.jpg",
+    };
+
+    let data2={
+star1:0,
+star2:0,
+star3:0,
+star4:0,
+star5:0,
+book_id: req.body.book_id,
     };
     let sql = "INSERT INTO BOOK SET ?";
+    let sql_2="INSERT INTO book_rating SET ?";
+
     connection.query(sql, data, (err, results) => {
       if (err) throw err;
-      res.redirect("/adminmenu");
-    });
+      
+   
+  });
+  connection.query(sql_2, data, (err, results) => {
+    if (err) throw err;
+    
+  });
+  res.redirect("/adminmenu");
   },
+
+adminpostfile:(req,res)=>{
+  res.sendFile(path.join(__dirname, '..', 'post.html'))
+
+},
+
+adminpostdata:(req,res)=>{
+let post=req.body.data;
+global_username;
+let query="insert into post(post,username)values('"+post+"','"+global_username+"')";
+connection.query(query,(err,res)=>{
+  if (err) throw err;
+  // console.log(new_query);
+  
+  })
+res.redirect("/adminmenu")
+},
+
+
   editBook: (req, res) => {
     const book_id = req.params.bookId;
     let sql = `SELECT * FROM BOOK WHERE book_id =${book_id}`;

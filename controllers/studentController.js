@@ -121,6 +121,86 @@ res.redirect('/bookrating?book_id='+req.query.book_id);
 
   },
 
+  viewstudentpost:(req,res)=>{
+    
+    const dataCountQuery = "SELECT COUNT(*) FROM post";
+    con.query(dataCountQuery, function(err,result){
+        if(err) throw err;
+
+        let dataCount = result[0]["COUNT(*)"];
+        let pageNo = req.query.page ? req.query.page : 1;
+        let dataPerPages = req.query.data ? req.query.data : 3;
+        let startLimit = (pageNo - 1) * dataPerPages;
+        let totalPages = Math.ceil(dataCount/dataPerPages);
+
+        // console.log(dataCount, "\n", pageNo, "\n",dataPerPages, "\n",startLimit, "\n",totalPages, "\n");
+
+        const Query = `SELECT * FROM post LIMIT ${startLimit}, ${dataPerPages}`;
+        con.query(Query, function(err,result){
+
+// if(!err){
+//     res.status(201.json)
+// }
+
+            if(err) throw err;
+            // res.send(result);
+            res.render( "viewpost", 
+                 {
+                    dataa: result,
+                    pages: totalPages,
+                    CurrentPage: pageNo,
+                    lastPage: totalPages
+                 }
+            );
+        })
+    });
+
+
+
+
+  },
+  addcomment:(req,res)=>{
+let query="insert into comments(post_id,username,comment)values('"+req.query.id+"','"+global_login_name+"','"+req.body.comment+"')";
+con.query(query,(err,result_comment)=>{
+  if (err) throw err;
+  // data:{post_data}
+  //  res.render("postdetail",{dataa:result,comments:result_comment});
+  
+})
+res.redirect("/postdetail?id="+req.query.id);
+  },
+
+  addreplycomment:(req,res)=>{
+let query="insert into replycomment (commentid,username,reply)values('"+req.query.reply_id+"','"+global_login_name+"','"+req.body.reply+"')";
+con.query(query,(err,result_comment)=>{
+  if (err) throw err;
+  // data:{post_data}
+  // console.log(replycomments);
+  res.redirect("/postdetail?id="+req.query.id);
+
+})  
+},
+
+  viewdetailpost:(req,res)=>{
+    let query="select * from post where id ='"+req.query.id+"'";
+    let comment="select * from comments where post_id='"+req.query.id+"'";
+    let reply="select * from replycomment";
+
+    con.query(reply,(err,replycomments)=>{
+      if (err) throw err;
+    con.query(query,(err,result)=>{
+      if (err) throw err;
+      // res.render("book_detail",{dataa:result});
+      con.query(comment,(err,result_comment)=>{
+        if (err) throw err;
+        // data:{post_data}
+        console.log(replycomments);
+         res.render("postdetail",{dataa:result,comments:result_comment,reply:replycomments});
+      })
+    })
+  })
+  },
+
   viewdetailfile:(req,res)=>{
 let query="select * from book where book_id ='"+req.query.book_id+"'";
 con.query(query,(err,result)=>{
