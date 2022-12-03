@@ -40,6 +40,7 @@ router.route("/viewstudentpost").get(auth_student,studentController.viewstudentp
 router.route("/postdetail").get(auth_student,studentController.viewdetailpost);
 router.route("/addcomment").post(auth_student,studentController.addcomment);
 router.route("/addreplycomment").post(auth_student,studentController.addreplycomment);
+router.route("/viewstudentfine").get(auth_student,studentController.finefile);
 
 
 router.route("/forgetverificationcode").get(studentController.forgetverificationcode);

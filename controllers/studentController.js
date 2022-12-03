@@ -1,4 +1,5 @@
 let username;
+let std_id;
 let global_login_name;
 let verificationcode=generateCode();
 const nodemailer= require('nodemailer');
@@ -159,6 +160,22 @@ res.redirect('/bookrating?book_id='+req.query.book_id);
 
 
   },
+
+finefile:(req,res)=>{
+let query="select * from fine where std_id='"+std_id+"';"
+console.log(query);
+// let res;
+con.query(query,(err,result)=>{
+  if (err) {throw err;}
+ else{
+  console.log(result);
+  res.render("studentfine",{dataa:result});
+ }
+})
+
+},
+
+
   addcomment:(req,res)=>{
 let query="insert into comments(post_id,username,comment)values('"+req.query.id+"','"+global_login_name+"','"+req.body.comment+"')";
 con.query(query,(err,result_comment)=>{
@@ -244,10 +261,11 @@ con.query(query,(err,result)=>{
   },
 
   login_data: (req,res)=>{
+  
     login_name=req.body.username;
 global_login_name=login_name;
      login_pass=req.body.password;
-    
+    std_id=req.body.std_id;
     // console.log(name);
     // console.log(pass);
     
@@ -260,6 +278,8 @@ global_login_name=login_name;
             
             else{
             if(result.length>0){
+              console.log(result);
+              std_id=result[0].std_id;
               const admin = { username: login_name, password: login_pass };
               //const admin="123"
                      req.session.admin = admin;
@@ -308,6 +328,7 @@ con.query('INSERT INTO student(name,username,email,phonenumber,password,qualific
 },
 
 verificationcode:(req,res)=>{
+
   res.sendFile(path.join(__dirname, '..', 'student', 'verify_code.html'))
 },
 
@@ -373,6 +394,8 @@ verificationcode=generateCode();
                       console.log("I am in verification");
               }
               })
+
+              ///////////Comment
 
   res.redirect("/forgetverificationcode");
           }
