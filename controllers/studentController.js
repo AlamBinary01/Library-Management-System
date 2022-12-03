@@ -42,6 +42,27 @@ module.exports={
 
   },
 
+  editstudentdata:(req,res)=>{
+let query="update student  set name='"+req.body.name+"',username='"+req.body.username+"',email='"+req.body.email+"',phonenumber='"+req.body.phonenumber+"',password='"+req.body.password+"',qualification='"+req.body.qualification+"',age='"+req.body.age+"' where std_id='"+std_id+"';";
+console.log(query);
+
+con.query(query,(err,result)=>{
+  if (err) throw err;
+  else{
+    res.redirect("/studentDashboard");
+  }
+})  
+},
+
+
+  editstudentfile:(req,res)=>{
+let query="select * from student where std_id='"+std_id+"';";
+con.query(query,(err,result)=>{
+if (err) throw err;
+res.render("editstudent",{dataa:result})
+})
+  },
+
   studentbookrating:(req,res)=>{
     // console.log("i am in student book rating")
 const star=parseInt(req.body.star_input);
@@ -363,6 +384,23 @@ forgetverificationdata:(req,res)=>{
       res.redirect("/forgetverificationcode");
   }
 },
+
+
+profilefile:(req,res)=>{
+  let query="select * from student where std_id = '"+std_id+"';"
+  con.query(query,(error,result)=>{
+    if(error){
+        console.log("Error");
+ 
+    }
+    else{
+      res.render("studentprofile",{dataa:result});
+
+    }
+}) 
+
+},
+
 
 forgetpassworddata:(req,res)=>{
   let name=req.body.username;

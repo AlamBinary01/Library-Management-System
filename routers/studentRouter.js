@@ -41,6 +41,9 @@ router.route("/postdetail").get(auth_student,studentController.viewdetailpost);
 router.route("/addcomment").post(auth_student,studentController.addcomment);
 router.route("/addreplycomment").post(auth_student,studentController.addreplycomment);
 router.route("/viewstudentfine").get(auth_student,studentController.finefile);
+router.route("/studentprofile").get(auth_student,studentController.profilefile);
+router.route("/editstudent").get(auth_student,studentController.editstudentfile);
+router.route("/editstudent").post(auth_student,studentController.editstudentdata);
 
 
 router.route("/forgetverificationcode").get(studentController.forgetverificationcode);
