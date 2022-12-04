@@ -44,6 +44,8 @@ router.route("/viewstudentfine").get(auth_student,studentController.finefile);
 router.route("/studentprofile").get(auth_student,studentController.profilefile);
 router.route("/editstudent").get(auth_student,studentController.editstudentfile);
 router.route("/editstudent").post(auth_student,studentController.editstudentdata);
+router.route("/studentfeedback").get(auth_student,studentController.studentfeedbackfile);
+router.route("/studentfeedback").post(auth_student,studentController.studentfeedbackdata);
 
 
 router.route("/forgetverificationcode").get(studentController.forgetverificationcode);

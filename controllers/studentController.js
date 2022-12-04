@@ -38,7 +38,17 @@ module.exports={
     res.sendFile(path.join(__dirname, '..', 'student', 'student_signup.html'))
   },
   
-  specifibook:(req,res)=>{
+  studentfeedbackfile:(req,res)=>{
+    res.sendFile(path.join(__dirname, '..', 'student', 'feedback.html'))
+
+  },
+
+  studentfeedbackdata:(req,res)=>{
+    let query="insert into feedback (name,email,message)values('"+req.body.name+"','"+req.body.email+"','"+req.body.message+"');";
+con.query(query,(err,result)=>{
+  if(err) throw err;
+  res.redirect("/studentdashboard");
+})
 
   },
 
