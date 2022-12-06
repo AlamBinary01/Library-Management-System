@@ -47,6 +47,7 @@ router.route("/editstudent").post(auth_student,studentController.editstudentdata
 router.route("/studentfeedback").get(auth_student,studentController.studentfeedbackfile);
 router.route("/studentfeedback").post(auth_student,studentController.studentfeedbackdata);
 
+router.route("/studentissuebook").get(auth_student,studentController.studentissuebook);
 
 router.route("/forgetverificationcode").get(studentController.forgetverificationcode);
 router.route("/forgetverificationcode").post(studentController.forgetverificationdata);

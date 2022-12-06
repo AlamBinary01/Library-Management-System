@@ -52,6 +52,14 @@ con.query(query,(err,result)=>{
 
   },
 
+  studentissuebook:(req,res)=>{
+let query="select * from issuebook where username='"+login_name+"'";
+con.query(query,(err,result)=>{
+  if (err) throw err;
+  res.render("studentissuebook",{data:result})
+})
+  },
+
   editstudentdata:(req,res)=>{
 let query="update student  set name='"+req.body.name+"',username='"+req.body.username+"',email='"+req.body.email+"',phonenumber='"+req.body.phonenumber+"',password='"+req.body.password+"',qualification='"+req.body.qualification+"',age='"+req.body.age+"' where std_id='"+std_id+"';";
 console.log(query);
