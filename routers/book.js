@@ -7,6 +7,23 @@ const nodemailer = require("nodemailer");
 const bookController = require("../controllers/booksControllers");
 const router = express.Router();
 const Auth=require("../middleware/auth")
+const multer=require("multer");
+
+
+const upload=multer({
+
+
+  storage:multer.diskStorage({
+      destination:function(req,file,cb)
+      {
+          cb(null,"./public/uploads");
+      },
+      filename:function(req,file,cb)
+      {
+      cb(null,file.originalname)
+      }
+  })
+  })
 
 
 //RoutesO
@@ -17,7 +34,7 @@ router.route("/adminsignup").get(bookController.admin_signup);
 router.route("/adminsignup").post(bookController.admin_signupdata);
 router.route("/adminmenu").get(Auth,bookController.adminMenu);
 router.route("/adminmenu/add").get(Auth,bookController.addBook_title);
-router.route("/adminmenu/add").post(Auth,bookController.insertBook);
+router.route("/adminmenu/add").post(Auth,upload.single("img"), bookController.insertBook);
 router.route("/adminmenu/edit/:bookId").get(Auth,bookController.editBook);
 router.route("/adminmenu/edit").post(Auth,bookController.updateBook);
 router.route("/adminmenu/delete/:bookId").get(Auth,bookController.delete);

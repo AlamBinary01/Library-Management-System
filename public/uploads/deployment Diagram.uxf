@@ -1,0 +1,87 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>11</zoom_level><element><id>UMLGeneric</id><coordinates><x>616</x><y>1166</y><w>154</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+fontsize=15
+Admin DataBase
+group=group-10</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>924</x><y>1166</y><w>154</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+fontsize=15
+Salesman DataBase
+
+group=group-10</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1694</x><y>407</y><w>154</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+fontsize=15
+Company.Header
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1210</x><y>88</y><w>165</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+fontsize=15
+Main.CPP</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1089</x><y>407</y><w>165</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+fontsize=15
+Saleman.Header</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1507</x><y>1166</y><w>165</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+fontsize=15
+Company DataBase
+group=group-10</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>792</x><y>407</y><w>165</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+Admin.Header
+fontsize=15
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1364</x><y>407</y><w>165</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+fontsize=15
+verification.Header</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1595</x><y>1023</y><w>55</w><h>165</h></coordinates><panel_attributes>lt=()-[v]
+SQL
+group=group-10</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>682</x><y>1001</y><w>55</w><h>187</h></coordinates><panel_attributes>lt=()-[v]
+SQL
+group=group-10</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>1023</y><w>55</w><h>165</h></coordinates><panel_attributes>lt=()-[v]
+SQL
+group=group-10</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>1265</x><y>1023</y><w>55</w><h>165</h></coordinates><panel_attributes>lt=()-[v]
+SQL
+group=group-10</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1177</x><y>1166</y><w>165</w><h>88</h></coordinates><panel_attributes>symbol=component
+
+fontsize=15
+Nadra DataBase
+group=group-10</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1298</x><y>165</y><w>121</w><h>121</h></coordinates><panel_attributes>lt=.
+&lt;&lt;Imports&gt;&gt;
+fontsize=17
+</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1298</x><y>242</y><w>484</w><h>187</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>420;150;420;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>858</x><y>242</y><w>473</w><h>187</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;150;10;20;410;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1221</x><y>253</y><w>99</w><h>176</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;140;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1298</x><y>253</y><w>99</w><h>176</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>70;140;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>22</x><y>209</y><w>220</w><h>88</h></coordinates><panel_attributes>symbol=Artifact
+fontsize=15
+&lt;&lt;Artifact&gt;&gt;
+Home.html
+Expresss
+group=group-13</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>297</x><y>99</y><w>803</w><h>198</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;protocol&gt;&gt;
+Http
+
+
+
+
+fontsize=17
+
+</panel_attributes><additional_attributes>710;30;220;30;10;140</additional_attributes></element><element><id>UMLDeployment</id><coordinates><x>572</x><y>979</y><w>1144</w><h>407</h></coordinates><panel_attributes>&lt;&lt;Database&gt;&gt;
+MySql
+fontsize=16
+
+group=group-10</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1595</x><y>484</y><w>220</w><h>561</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;490;180;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1265</x><y>484</y><w>231</w><h>561</h></coordinates><panel_attributes>lt=.&gt;
+</panel_attributes><additional_attributes>190;10;10;490</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>484</y><w>209</w><h>561</h></coordinates><panel_attributes>lt=.&gt;
+</panel_attributes><additional_attributes>170;10;10;490</additional_attributes></element><element><id>Relation</id><coordinates><x>682</x><y>484</y><w>220</w><h>539</h></coordinates><panel_attributes>lt=.&gt;
+</panel_attributes><additional_attributes>180;10;10;470</additional_attributes></element><element><id>UMLDeployment</id><coordinates><x>539</x><y>0</y><w>1353</w><h>627</h></coordinates><panel_attributes>&lt;&lt;Device&gt;&gt;
+Application Server
+fontsize=16
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLDeployment</id><coordinates><x>0</x><y>143</y><w>308</w><h>209</h></coordinates><panel_attributes>:WebServer
+fontsize=16
+
+group=group-13</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1078</x><y>99</y><w>154</w><h>66</h></coordinates><panel_attributes>lt=()-[v]
+TCP
+fontsize=17
+</panel_attributes><additional_attributes>10;30;120;30</additional_attributes></element><element><id>UMLDeployment</id><coordinates><x>110</x><y>748</y><w>308</w><h>143</h></coordinates><panel_attributes>&lt;&lt;device&gt;&gt;
+:payment Handler
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>187</x><y>803</y><w>154</w><h>66</h></coordinates><panel_attributes>&lt;&lt;Payment Proceesing&gt;&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>396</x><y>561</y><w>165</w><h>209</h></coordinates><panel_attributes>lt=.&gt;
+Web service                  </panel_attributes><additional_attributes>120;10;10;10;10;170</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>583</x><y>484</y><w>154</w><h>88</h></coordinates><panel_attributes>symbol=component
+Persistance
+&lt;&lt;infrastructure&gt;&gt;</panel_attributes><additional_attributes></additional_attributes></element></diagram>
