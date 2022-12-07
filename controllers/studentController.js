@@ -80,6 +80,22 @@ if (err) throw err;
 res.render("editstudent",{dataa:result})
 })
   },
+  student_logout: (req, res) => {
+
+
+    req.session.destroy((err) => {
+      if (err) {
+          console.log(err)
+          return next(err)
+      }
+
+      return res.redirect("/")
+  })
+
+
+    // req.session.admin = null;
+    // res.redirect("/");
+  },
 
   studentbookrating:(req,res)=>{
     // console.log("i am in student book rating")
@@ -319,9 +335,9 @@ global_login_name=login_name;
             if(result.length>0){
               console.log(result);
               std_id=result[0].std_id;
-              const admin = { username: login_name, password: login_pass };
+              const student = { username: login_name, password: login_pass };
               //const admin="123"
-                     req.session.admin = admin;
+                     req.session.admin = student;
                      console.log(req.session.admin);
                      res.cookie("CurrentRole", "Student");
                res.sendFile(path.join(__dirname, '..', 'student', 'student_dashboard.html'))
