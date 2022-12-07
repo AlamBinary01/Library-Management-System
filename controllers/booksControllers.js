@@ -12,6 +12,9 @@ const connection = mysql.createConnection({
 });
 
 module.exports = {
+  badrequest:(req,res)=>{
+    res.sendFile(path.join(__dirname, "..", "L_admin", "404.html"));
+  },
   //contact us
   contact:(req,res)=>{
     res.sendFile(path.join(__dirname, "..", "L_admin", "contact.html"));

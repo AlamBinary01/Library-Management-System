@@ -7,6 +7,7 @@ const multer=require("multer");
 const auth_student=require("../middleware/auth")
 const app=express();
 const { application } = require("express");
+const booksControllers = require("../controllers/booksControllers");
 
 
 const upload=multer({
@@ -23,7 +24,7 @@ const upload=multer({
         }
     })
     })
-
+    router.route("*").get(booksControllers.badrequest);
 router.route("/studentDashboard").get(studentController.studentDashboard);
  router.route("/studentlogin").get(studentController.student_login);
  router.route("/studentlogin").post(studentController.login_data);

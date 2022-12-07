@@ -5,10 +5,11 @@ const nodemailer = require("nodemailer");
 const FineController = require("../controllers/fineControllers");
 const router = express.Router();
 const Auth=require("../middleware/auth");
+const booksControllers = require("../controllers/booksControllers");
 
 
 router.route("/adminmenu").get(Auth,FineController.adminMenu);
-
+router.route("*").get(booksControllers.badrequest);
 router.route("/adminmenu/addFine").get(Auth,FineController.addFine);
 router.route("/adminmenu/addFine").post(Auth,FineController.insertFine);
 router.route("/adminmenu/editFine/:stu_Id").get(Auth,FineController.editFine);
