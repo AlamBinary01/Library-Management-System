@@ -12,6 +12,36 @@ const connection = mysql.createConnection({
 });
 
 module.exports = {
+  //contact us
+  contact:(req,res)=>{
+    res.sendFile(path.join(__dirname, "..", "L_admin", "contact.html"));
+  },
+  contactsendMessage:(req,res)=>{
+    let name= req.body.name_;
+    let email=req.body.email_;
+    let messages=req.body.message_;
+
+  var mailOption={
+    from:email,
+    to:"hase271002@gamil.com",
+    subject:"Query",
+    html:" <b>Name</b>" +
+    name +
+    "<br><b>email:</b>" +
+    email +
+    "<br><b>Message</b> " +
+    messages +
+    "<br>Thanks",
+  }
+  transporter.sendMail(mailOption,function(error,info){
+    if(error ) throw error;
+    else console.log("GOOD")
+  })
+  res.redirect("/");
+  },
+  about_:(req,res)=>{
+    res.sendFile(path.join(__dirname, "..", "L_admin", "about.html"));
+  },
   //Admin Login
   adminlogin_title: (req, res) => {
     res.sendFile(path.join(__dirname, "..", "L_admin", "admin_login.html"));

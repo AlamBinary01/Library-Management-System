@@ -29,6 +29,8 @@ const upload=multer({
 //RoutesO
 router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
+router.route("/contactUs").get(bookController.contact);
+router.route("/contactUs").post(bookController.contactsendMessage);
 // admin Sign Up
 router.route("/adminsignup").get(bookController.admin_signup);
 router.route("/adminsignup").post(bookController.admin_signupdata);
@@ -63,13 +65,13 @@ router.route("/adminmenu/issuebookdetails").get(bookController.issuebookdetail);
 router.route("/adminmenu/issuedbookdetail").post(bookController.searchissueddetails);
 //Return Book router
 router.route("/adminmenu/returnbook").get(bookController.returnBook);
-//show total admin details
-//router.route("/adminmenu/details").post(bookController.showTotalAdmin);
 //admon logout
 router.route("/adminmenu/logout").get(bookController.admin_logout);
 ///Admin Post
 router.route("/adminpost").get(bookController.adminpostfile);
 router.route("/adminpost").post(bookController.adminpostdata);
+//about us
+router.route("/aboutus").get(bookController.about_);
 
 
 
