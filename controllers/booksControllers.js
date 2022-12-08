@@ -4,12 +4,7 @@ const nodemailer = require("nodemailer");
 const transporter = require("../nodeMailer/mail");
 const path = require("path");
 const { verificationcode } = require("./studentController");
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "crud",
-});
+const connection = require("../config/config")
 
 module.exports = {
   //contact us

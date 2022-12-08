@@ -16,12 +16,7 @@ var  transporter= nodemailer.createTransport({
 path = require('path');
 const { verify } = require('crypto');
 const mysql = require("mysql");
-const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "crud",
-});
+const con = require("../config/config")
 
 
 
@@ -46,7 +41,7 @@ module.exports={
   studentfeedbackdata:(req,res)=>{
     let query="insert into feedback (name,email,message)values('"+req.body.name+"','"+req.body.email+"','"+req.body.message+"');";
 con.query(query,(err,result)=>{
-  if(err) throw err;
+  if(err) ;
   res.redirect("/studentdashboard");
 })
 

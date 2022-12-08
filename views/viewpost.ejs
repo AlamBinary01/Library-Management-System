@@ -8,7 +8,11 @@
     <title>Table data</title>
     <style>
         body {
-            background-color: rgb(0, 0, 0);
+            background-color:white;
+        }
+        .h4
+        {
+            color: white;
         }
 
         .flexbox {
@@ -19,6 +23,13 @@
             text-align: center;
             justify-content: center;
             margin-top: 10%;
+            
+        }
+
+        .heading{
+            align-items: center;
+            text-align: center;
+            justify-content: center;
         }
 
         .image {
@@ -31,7 +42,8 @@
             height: 400px;
             width: 300px;
             margin: 20px;
-            background-color: rgb(255, 255, 255);
+            background-color: black;
+            border-style: double;
         }
 
        
@@ -47,7 +59,7 @@
         }
 
         li a {
-        color: white;
+        color: rgb(255, 253, 253);
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
@@ -113,7 +125,6 @@
 </head>
 
 <body>
-
     
     <!-- <ul>
         <li><a href="">Home</a></li>
@@ -122,25 +133,21 @@
       </ul>
     <hr> -->
 
-    <div class="topnav">
-     
-      
+    <h1 class="heading" style="align-text: center;">Announcement</h1>
 
-        
-
-    </div>
 
 
 
     <div class="flexbox">
+
         <% dataa.forEach(function(dataa){ %>
             <div class="card">
                
                 <div class="user_details">
-                    <h4>
+                    <h4 style="color: white;">
                         post by:<%= dataa.username %>
                     </h4>
-                    <div >
+                    <div  style="color: white;" >
                        <%= dataa.post %>
                         
                     </div>
