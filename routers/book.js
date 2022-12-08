@@ -31,7 +31,6 @@ router.route("/adminlogin").get(bookController.adminlogin_title);
 router.route("/adminlogin").post(bookController.admin_login);
 router.route("/contactUs").get(bookController.contact);
 router.route("/contactUs").post(bookController.contactsendMessage);
-router.route("*").get(bookController.badrequest);
 // admin Sign Up
 router.route("/adminsignup").get(bookController.admin_signup);
 router.route("/adminsignup").post(bookController.admin_signupdata);
